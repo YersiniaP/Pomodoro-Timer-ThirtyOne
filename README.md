@@ -1,6 +1,7 @@
 # Pomodoro Timer ThirtyOne
 
-**Description:** Pomodoro Timer project for CS 361 - Software Engineering
+**Description:** 
+Pomodoro Timer project for CS 361 - Software Engineering
 
 **Group 31 Members:** 
 - Sarah Leon
