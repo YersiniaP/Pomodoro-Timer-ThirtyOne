@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Task creation</string>
+    <string name="edit_category">Category</string>
+    <string name="edit_task">Name of task</string>
+    <string name="edit_starttim">Start Time</string>
+    <string name="edit_endtime">End Time</string>
+    <string name="edit_pomodoro">Pomodoro</string>
+    <string name="edit_shortbreak">Short Break</string>
+    <string name="edit_longbreak">Long Break</string>
+    <string name="button_create">Create</string>
+</resources>
