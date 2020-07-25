@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">pomodoro-app</string>
+    <string name="password">Password</string>
+    <string name="email_address">Email Address</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="tommy">Tommy</string>
+    <string name="edit_category">Category</string>
+    <string name="category">Create New Category</string>
+    <string name="new_category">New Category Name</string>
+    <string name="edit_task">Name of task</string>
+    <string name="edit_starttim">Start Time</string>
+    <string name="edit_endtime">End Time</string>
+    <string name="edit_pomodoro">Pomodoro</string>
+    <string name="edit_shortbreak">Short Break</string>
+    <string name="edit_longbreak">Long Break</string>
+    <string name="button_create">Create</string>
+</resources>

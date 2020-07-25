@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout_summary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProgressActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="379dp"
+        android:layout_height="401dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/progress_text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/autour_one"
+            android:text="Today's Progress"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/progress_image_pie_chart"
+            android:layout_width="match_parent"
+            android:layout_height="187dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/pie"
+            tools:srcCompat="@drawable/pie" />
+
+        <TextView
+            android:id="@+id/progress_text_total_task_time"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:fontFamily="@font/autour_one"
+            android:text="Total Task Time: 2h 35m"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <TextView
+            android:id="@+id/progress_text_tasks_completed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/autour_one"
+            android:text="Tasks Completed: 12"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <Space
+            android:id="@+id/progress_space_tasks_div"
+            android:layout_width="match_parent"
+            android:layout_height="10sp" />
+
+        <View
+            android:id="@+id/progress_divider_tasks_breaks"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider" />
+
+        <Space
+            android:id="@+id/progress_space_div_breaks"
+            android:layout_width="match_parent"
+            android:layout_height="10sp" />
+
+        <TextView
+            android:id="@+id/text_view_breaks"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:fontFamily="@font/autour_one"
+            android:text="Breaks: 11"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <TextView
+            android:id="@+id/text_view_total_break_time"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:fontFamily="@font/autour_one"
+            android:text="Total Break Time: 0h 45m"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <Space
+            android:id="@+id/progress_space_breaks_div2"
+            android:layout_width="match_parent"
+            android:layout_height="10sp" />
+
+        <View
+            android:id="@+id/progress_divider_breaks_xp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider" />
+
+        <Space
+            android:id="@+id/progress_space_div2_xp"
+            android:layout_width="match_parent"
+            android:layout_height="10sp" />
+
+        <TextView
+            android:id="@+id/progress_text_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/autour_one"
+            android:text="Current Level: 7"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <TextView
+            android:id="@+id/progress_text_xp_earned"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/autour_one"
+            android:text="Today's XP:"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <TextView
+            android:id="@+id/progress_text_view_categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/autour_one"
+            android:text="Categories:"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/progress_scroll_view_categories"
+        style="@android:style/Widget.Holo.ScrollView"
+        android:layout_width="384dp"
+        android:layout_height="149dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:scrollbarStyle="outsideInset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.838">
+
+        <LinearLayout
+            android:id="@+id/progress_linear_layout_categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/progress_text_view_cat1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/autour_one"
+                android:text="- Homework: 35m"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <TextView
+                android:id="@+id/progress_text_view_cat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/autour_one"
+                android:text="- Work: 1h 2m"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <TextView
+                android:id="@+id/progress_text_view_cat2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/autour_one"
+                android:text="- Coding: 4h 30m"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <TextView
+                android:id="@+id/progress_text_view_cat3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/autour_one"
+                android:text="- Cooking: 5m"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <TextView
+                android:id="@+id/progress_text_view_cat12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/autour_one"
+                android:text="- Research: 3h 22m"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <TextView
+                android:id="@+id/progress_text_view_cat19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/autour_one"
+                android:text="- Game Development: 2h 30m"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <TextView
+                android:id="@+id/progress_text_view_cat20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/autour_one"
+                android:text="- Sewing: 1h 7m"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <TextView
+                android:id="@+id/progress_text_view_cat21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/autour_one"
+                android:text="- Chores: 50m"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <TextView
+                android:id="@+id/progress_text_view_cat22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/autour_one"
+                android:text="- Walk Dog: 30m"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <TextView
+                android:id="@+id/progress_text_view_cat23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/autour_one"
+                android:text="- Fitness: 1h 7m"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <TextView
+                android:id="@+id/progress_text_view_cat24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/autour_one"
+                android:text="- Design App: 100h 59m"
+                android:textColor="@android:color/holo_red_dark" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/progress_button_create"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="142dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@android:color/holo_red_dark"
+        android:fontFamily="@font/autour_one"
+        android:text="Create Task"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_scroll_view_categories"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/progress_button_sign_out"
+        style="@android:style/Widget.Holo.Button.Small"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@android:color/holo_orange_dark"
+        android:fontFamily="@font/autour_one"
+        android:text="Sign Out"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_scroll_view_categories"
+        app:layout_constraintVertical_bias="0.937" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="103dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="24dp"
+        android:background="@android:color/holo_green_light"
+        android:fontFamily="@font/autour_one"
+        android:text="Rewards"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_scroll_view_categories"
+        app:layout_constraintVertical_bias="0.959" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

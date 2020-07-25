@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.pomodoro_app.TimerActivity">
+
+    <TextView
+        android:id="@+id/countdown_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="00:00"
+        android:textColor="@android:color/black"
+        android:textSize="60sp" />
+
+    <TextView
+        android:id="@+id/task_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/countdown_text"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="50dp"
+        android:text="TextView"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="35sp" />
+
+    <Button
+        android:id="@+id/button_start_pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/countdown_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="start"
+        android:background="@color/colorAccent"
+        android:textColor= "@color/colorPrimaryDark" />
+   <!-- <Button
+        android:id="@+id/button_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/countdown_text"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="50dp"
+        android:layout_toEndOf="@+id/button_start_pause"
+        android:text="reset"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        android:layout_marginLeft="12dp"
+        android:background="@color/colorPrimary"
+        android:textColor= "@color/colorPrimaryDark"
+        android:layout_toRightOf="@+id/button_start_pause" />-->
+
+
+</RelativeLayout>

@@ -1,9 +1,9 @@
 # Pomodoro Timer ThirtyOne
 
-**Description:** 
+**Description:**
 Pomodoro Timer project for CS 361 - Software Engineering
 
-**Group 31 Members:** 
+**Group 31 Members:**
 - Sarah Leon
 - Ryan Ong
 - Shawn Shahzad
