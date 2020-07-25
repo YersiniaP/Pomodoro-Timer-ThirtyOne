@@ -6,22 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 
-
-public class MainActivity extends AppCompatActivity {
+public class TaskCreationActivity extends AppCompatActivity {
     private Spinner mSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_task_creation);
         mSpinner = findViewById(R.id.editTextTextPersonName8);
         mSpinner.setAdapter(getArrayAdapter());
 
@@ -29,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (mSpinner.getAdapter().getItem(i).equals("NewCategory")){
-                    startActivityForResult(new Intent(MainActivity.this, NewCategoryActivity.class), 100);
+                    startActivityForResult(new Intent(TaskCreationActivity.this, NewCategoryActivity.class), 100);
                     mSpinner.setSelection(0,true);
                 }
             }
