@@ -4,99 +4,155 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <EditText
-        android:id="@+id/editTextTextEmailAddress"
-        android:layout_width="270dp"
-        android:layout_height="55dp"
-        android:ems="10"
-        android:hint="@string/email_address"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.482"
-        android:autofillHints="" />
-
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="270dp"
-        android:layout_height="55dp"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintVertical_bias="0.135"
-        android:importantForAutofill="no" />
-
-    <Button
-        android:id="@+id/btn_Sign_In"
-        android:layout_width="160dp"
-        android:layout_height="51dp"
-        android:text="@string/sign_in"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
-        app:layout_constraintVertical_bias="0.338" />
-
-    <Button
-        android:id="@+id/btn_Create_Account"
-        android:layout_width="160dp"
-        android:layout_height="51dp"
-        android:text="@string/create_account"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Sign_In"
-        app:layout_constraintVertical_bias="0.297" />
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/forgot_password"
-        app:layout_constraintBottom_toTopOf="@+id/btn_Sign_In"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.23"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
-        app:layout_constraintVertical_bias="0.0" />
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@color/red"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="245dp"
-        android:layout_height="202dp"
-        android:contentDescription="@string/tommy"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.395"
-        app:srcCompat="@drawable/tomatoface" />
+        android:id="@+id/iv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:onClick="newCategory"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:layout_constraintRight_toRightOf="@id/tv_title"
+        app:layout_constraintTop_toTopOf="@id/tv_title" />
 
-    <TextView
-        android:id="@+id/txtSqueezeMe"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/editTextTextPersonName8"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Squeeze Me!"
-        android:textAllCaps="false"
-        android:textColor="#E41506"
-        android:textColorLink="#ED0909"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:overlapAnchor="false"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/v"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.788" />
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintVertical_chainStyle="spread" />
 
+    <View
+        android:id="@+id/v"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toTopOf="@id/editTextTextPersonName9"
+        app:layout_constraintLeft_toLeftOf="@id/editTextTextPersonName8"
+        app:layout_constraintRight_toRightOf="@id/editTextTextPersonName8"
+        app:layout_constraintTop_toBottomOf="@id/editTextTextPersonName8" />
 
+    <EditText
+        android:id="@+id/editTextTextPersonName9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/edit_task"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTime"
+        app:layout_constraintLeft_toLeftOf="@id/editTextTextPersonName8"
+        app:layout_constraintRight_toRightOf="@id/editTextTextPersonName8"
+        app:layout_constraintTop_toBottomOf="@+id/v" />
+
+    <EditText
+        android:id="@+id/editTextTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/edit_starttim"
+        android:inputType="time"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTime2"
+        app:layout_constraintLeft_toLeftOf="@id/editTextTextPersonName8"
+        app:layout_constraintRight_toRightOf="@id/editTextTextPersonName8"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9" />
+
+    <EditText
+        android:id="@+id/editTextTime2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/edit_endtime"
+        android:inputType="time"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName10"
+        app:layout_constraintLeft_toLeftOf="@id/editTextTextPersonName8"
+        app:layout_constraintRight_toRightOf="@id/editTextTextPersonName8"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/edit_pomodoro"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTime3"
+        app:layout_constraintLeft_toLeftOf="@id/editTextTextPersonName8"
+        app:layout_constraintRight_toRightOf="@id/editTextTextPersonName8"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime2" />
+
+    <EditText
+        android:id="@+id/editTextTime3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/edit_shortbreak"
+        android:inputType="time"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTime4"
+        app:layout_constraintLeft_toLeftOf="@id/editTextTextPersonName8"
+        app:layout_constraintRight_toRightOf="@id/editTextTextPersonName8"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName10" />
+
+    <EditText
+        android:id="@+id/editTextTime4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/edit_longbreak"
+        android:inputType="time"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintLeft_toLeftOf="@id/editTextTextPersonName8"
+        app:layout_constraintRight_toRightOf="@id/editTextTextPersonName8"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime3" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="212dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/red"
+        android:onClick="@string/button_create"
+        android:text="@string/button_create"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/editTextTextPersonName8"
+        app:layout_constraintRight_toRightOf="@id/editTextTextPersonName8"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

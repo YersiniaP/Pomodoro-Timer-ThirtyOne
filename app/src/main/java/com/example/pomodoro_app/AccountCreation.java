@@ -36,7 +36,7 @@ public class AccountCreation extends AppCompatActivity {
 
 
     public void MainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

@@ -1,87 +1,84 @@
 package com.example.pomodoro_app;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.widget.Button;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-import org.w3c.dom.Text;
+
 
 public class MainActivity extends AppCompatActivity {
-
-    private Button btn_Create_Account;
-    private TextView txtSqueezeMe;
-
+    private Spinner mSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mSpinner = findViewById(R.id.editTextTextPersonName8);
+        mSpinner.setAdapter(getArrayAdapter());
 
-
-        //Click the 'Sign On' button and go to the Account creation activity
-        btn_Create_Account = (Button) findViewById(R.id.btn_Create_Account);
-        btn_Create_Account.setOnClickListener(new View.OnClickListener() {
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                AccountCreation();
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (mSpinner.getAdapter().getItem(i).equals("NewCategory")){
+                    startActivityForResult(new Intent(MainActivity.this, NewCategoryActivity.class), 100);
+                    mSpinner.setSelection(0,true);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
+    }
 
-        //Click on squeeze me to go to the WhatIS page which explains the APP
-        txtSqueezeMe = (TextView) findViewById(R.id.txtSqueezeMe);
-        txtSqueezeMe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                WhatIs();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == 101) {
+            mSpinner.setAdapter(getArrayAdapter());
+        }
+    }
+
+    private ArrayAdapter getArrayAdapter() {
+        SharedPreferences sharedPreferences = getSharedPreferences("timer", MODE_PRIVATE);
+        String category = sharedPreferences.getString("category", "");
+        String[] split = category.split("-");
+
+        String[] arr;
+        if (category.isEmpty() || split == null || split.length == 0) {
+            arr = new String[]{"", "NewCategory"};
+        } else {
+            arr = new String[2 + split.length];
+            arr[0] = "";
+            arr[1] = "NewCategory";
+
+            for (int i = 0; i < split.length; i++) {
+                arr[i + 2] = split[i];
             }
-        });
+        }
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arr);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        return adapter;
+    }
 
-
-
-
-
-
-
-
-
+    public void newCategory(View view) {
 
     }
 
-
-
-    public void AccountCreation() {
-        Intent intent = new Intent(this, AccountCreation.class);
-        startActivity(intent);
+    public void Create(View view) {
+        if (mSpinner.getSelectedItem() != null)
+            LogUtils.showLog(mSpinner.getSelectedItem().toString());
     }
-
-    public void WhatIs() {
-        Intent intent = new Intent(this, WhatIs.class);
-        startActivity(intent);
-    }
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
