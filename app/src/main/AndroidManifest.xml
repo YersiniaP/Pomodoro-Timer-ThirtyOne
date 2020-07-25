@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".NewCategoryActivity"/>
+        <activity android:name=".WhatIs"/>
+        <activity android:name=".AccountCreation"/>
+        <activity android:name=".ProgressActivity"/>
+        <activity android:name=".RewardsActivity"/>
+        <activity android:name=".TaskCreationActivity"/>
+        <activity android:name=".TimerActivity"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
