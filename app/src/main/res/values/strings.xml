@@ -20,4 +20,19 @@
     <string name="email_address">Email Address</string>
     <string name="password_enter_a_4_digit_pin">Password (Enter a 4 digit pin)</string>
     <string name="create">Create</string>
+    <string name = "password_error">Enter your Password</string>
+    <string name = "password_invalid_error">Password must be at least 4 characters long</string>
+    <string name = "name_error">Enter your User Name</string>
+    <string name = "email_error">Enter your Email Address</string>
+    <string name = "name">name</string>
+
+    //what_is page, need to fix
+    <string name="lorem_ipsum_is_simply_dummy_text_of_the_printing_and_typesetting_industry_lorem_ipsum_has_been_the_industry_s_standard_dummy_text_ever_since_the_1500s_when_an_unknown_printer_took_a_galley_of_type_and_scrambled_it_to_make_a_type_specimen_book_it_has_survived_not_only_five_centuries_but_also_the_leap_into_electronic_typesetting_remaining_essentially_unchanged_it_was_popularised_in_the_1960s_with_the_release_of_letraset_sheets_containing_lorem_ipsum_passages_and_more_recently_with_desktop_publishing_software_like_aldus_pagemaker_including_versions_of_lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="lorem_ipsum_is_simply_dummy_text_of_the_printing_and_typesetting_industry_lorem_ipsum_has_been_the_industry_s_standard_dummy_text_ever_since_the_1500s_when_an_unknown_printer_took_a_galley_of_type_and_scrambled_it_to_make_a_type_specimen_book_it_has_survived_not_only_five_centuries_but_also_the_leap_into_electronic_typesetting_remaining_essentially_unchanged_it_was_popularised_in_the_1960s_with_the_release_of_letraset_sheets_containing_lorem_ipsum_passages_and_more_recently_with_desktop_publishing_software_like_aldus_pagemaker_including_versions_of_lorem_ipsum2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="register">Register</string>
+    <string name="user_name">User Name</string>
+    <string name="click_me">Click Me!</string>
+    <string name="how_to_use_this_app">How to Use this App</string>
+
+
 </resources>
