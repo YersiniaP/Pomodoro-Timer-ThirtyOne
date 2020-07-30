@@ -12,16 +12,18 @@
         <activity android:name=".NewCategoryActivity"/>
         <activity android:name=".WhatIs"/>
         <activity android:name=".AccountCreation"/>
-        <activity android:name=".ProgressActivity"/>
-        <activity android:name=".RewardsActivity"/>
-        <activity android:name=".TaskCreationActivity"/>
-        <activity android:name=".TimerActivity"/>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".ProgressActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".RewardsActivity"/>
+        <activity android:name=".TaskCreationActivity"/>
+        <activity android:name=".TimerActivity"/>
+        <activity android:name=".LoginActivity">
+
         </activity>
     </application>
 

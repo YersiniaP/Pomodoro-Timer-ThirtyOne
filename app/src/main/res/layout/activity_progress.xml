@@ -7,153 +7,127 @@
     android:layout_height="match_parent"
     tools:context=".ProgressActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="379dp"
-        android:layout_height="401dp"
+    <TextView
+        android:id="@+id/progress_text_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:orientation="vertical"
+        android:fontFamily="@font/autour_one"
+        android:text="Today's Progress"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/progress_text_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/autour_one"
-            android:text="Today's Progress"
-            android:textAlignment="center"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="36sp"
-            android:textStyle="bold" />
+    <ImageView
+        android:id="@+id/progress_image_pie_chart"
+        android:layout_width="0dp"
+        android:layout_height="174dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.127"
+        app:srcCompat="@drawable/pie"
+        tools:srcCompat="@drawable/pie" />
 
-        <ImageView
-            android:id="@+id/progress_image_pie_chart"
-            android:layout_width="match_parent"
-            android:layout_height="187dp"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/pie"
-            tools:srcCompat="@drawable/pie" />
+    <TextView
+        android:id="@+id/text_view_total_break_time"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/autour_one"
+        android:text="Total Break Time: 0h 45m"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.378" />
 
-        <TextView
-            android:id="@+id/progress_text_total_task_time"
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:fontFamily="@font/autour_one"
-            android:text="Total Task Time: 2h 35m"
-            android:textAlignment="center"
-            android:textColor="@android:color/holo_red_dark" />
+    <TextView
+        android:id="@+id/text_view_breaks"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/autour_one"
+        android:text="Breaks: 11"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.426" />
 
-        <TextView
-            android:id="@+id/progress_text_tasks_completed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/autour_one"
-            android:text="Tasks Completed: 12"
-            android:textAlignment="center"
-            android:textColor="@android:color/holo_red_dark" />
+    <TextView
+        android:id="@+id/progress_text_total_task_time"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/autour_one"
+        android:text="Total Task Time: 2h 35m"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.475" />
 
-        <Space
-            android:id="@+id/progress_space_tasks_div"
-            android:layout_width="match_parent"
-            android:layout_height="10sp" />
-
-        <View
-            android:id="@+id/progress_divider_tasks_breaks"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:background="?android:attr/listDivider" />
-
-        <Space
-            android:id="@+id/progress_space_div_breaks"
-            android:layout_width="match_parent"
-            android:layout_height="10sp" />
-
-        <TextView
-            android:id="@+id/text_view_breaks"
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:fontFamily="@font/autour_one"
-            android:text="Breaks: 11"
-            android:textAlignment="center"
-            android:textColor="@android:color/holo_red_dark" />
-
-        <TextView
-            android:id="@+id/text_view_total_break_time"
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:fontFamily="@font/autour_one"
-            android:text="Total Break Time: 0h 45m"
-            android:textAlignment="center"
-            android:textColor="@android:color/holo_red_dark" />
-
-        <Space
-            android:id="@+id/progress_space_breaks_div2"
-            android:layout_width="match_parent"
-            android:layout_height="10sp" />
-
-        <View
-            android:id="@+id/progress_divider_breaks_xp"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="?android:attr/listDivider" />
-
-        <Space
-            android:id="@+id/progress_space_div2_xp"
-            android:layout_width="match_parent"
-            android:layout_height="10sp" />
-
-        <TextView
-            android:id="@+id/progress_text_level"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/autour_one"
-            android:text="Current Level: 7"
-            android:textAlignment="center"
-            android:textColor="@android:color/holo_red_dark" />
-
-        <TextView
-            android:id="@+id/progress_text_xp_earned"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/autour_one"
-            android:text="Today's XP:"
-            android:textAlignment="center"
-            android:textColor="@android:color/holo_red_dark" />
-
-        <TextView
-            android:id="@+id/progress_text_view_categories"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/autour_one"
-            android:text="Categories:"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/progress_text_tasks_completed"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/autour_one"
+        android:text="Tasks Completed: 12"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.524" />
 
     <ScrollView
         android:id="@+id/progress_scroll_view_categories"
         style="@android:style/Widget.Holo.ScrollView"
-        android:layout_width="384dp"
-        android:layout_height="149dp"
+        android:layout_width="381dp"
+        android:layout_height="182dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="70dp"
+        android:background="@android:color/holo_red_dark"
         android:scrollbarStyle="outsideInset"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.838">
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:id="@+id/progress_linear_layout_categories"
@@ -167,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/autour_one"
                 android:text="- Homework: 35m"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/progress_text_view_cat"
@@ -175,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/autour_one"
                 android:text="- Work: 1h 2m"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/progress_text_view_cat2"
@@ -183,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/autour_one"
                 android:text="- Coding: 4h 30m"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/progress_text_view_cat3"
@@ -191,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/autour_one"
                 android:text="- Cooking: 5m"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/progress_text_view_cat12"
@@ -199,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/autour_one"
                 android:text="- Research: 3h 22m"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/progress_text_view_cat19"
@@ -207,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/autour_one"
                 android:text="- Game Development: 2h 30m"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/progress_text_view_cat20"
@@ -215,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/autour_one"
                 android:text="- Sewing: 1h 7m"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/progress_text_view_cat21"
@@ -223,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/autour_one"
                 android:text="- Chores: 50m"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/progress_text_view_cat22"
@@ -231,7 +205,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/autour_one"
                 android:text="- Walk Dog: 30m"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/progress_text_view_cat23"
@@ -239,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/autour_one"
                 android:text="- Fitness: 1h 7m"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/progress_text_view_cat24"
@@ -247,7 +221,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/autour_one"
                 android:text="- Design App: 100h 59m"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@color/white" />
 
         </LinearLayout>
     </ScrollView>
@@ -255,10 +229,11 @@
     <Button
         android:id="@+id/progress_button_create"
         style="@android:style/Widget.Holo.Button"
-        android:layout_width="142dp"
+        android:layout_width="155dp"
         android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/holo_red_dark"
         android:fontFamily="@font/autour_one"
         android:text="Create Task"
@@ -266,10 +241,10 @@
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/progress_button_level"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_scroll_view_categories"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
@@ -277,8 +252,8 @@
         style="@android:style/Widget.Holo.Button.Small"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/holo_orange_dark"
         android:fontFamily="@font/autour_one"
         android:text="Sign Out"
@@ -288,27 +263,57 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_scroll_view_categories"
-        app:layout_constraintVertical_bias="0.937" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/progress_button_level"
         style="@android:style/Widget.Holo.Button"
-        android:layout_width="103dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="24dp"
-        android:background="@android:color/holo_green_light"
+        android:layout_width="97dp"
+        android:layout_height="39dp"
+        android:background="@android:color/holo_blue_dark"
         android:fontFamily="@font/autour_one"
-        android:text="Rewards"
-        android:textColor="@android:color/black"
+        android:text="Level"
+        android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintEnd_toStartOf="@+id/progress_button_sign_out"
+        app:layout_constraintHorizontal_bias="0.934"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_scroll_view_categories"
-        app:layout_constraintVertical_bias="0.959" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.974" />
+
+    <TextView
+        android:id="@+id/progress_text_view_categories"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/autour_one"
+        android:text="Categories:"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.594" />
+
+    <View
+        android:id="@+id/progress_divider_tasks_breaks"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.546" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
