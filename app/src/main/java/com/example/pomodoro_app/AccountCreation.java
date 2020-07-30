@@ -84,7 +84,7 @@ public class AccountCreation extends AppCompatActivity {
 
         if (isNameValid && isEmailValid && isPasswordValid) {
             Toast.makeText(getApplicationContext(), "User Account Created!", Toast.LENGTH_LONG).show();
-            MainActivity();
+            LoginActivity();
         }
 
     }
@@ -96,7 +96,7 @@ public class AccountCreation extends AppCompatActivity {
 
 
 
-    public void MainActivity() {
+    public void LoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
