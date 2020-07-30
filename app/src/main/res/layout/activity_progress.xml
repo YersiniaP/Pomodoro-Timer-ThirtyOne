@@ -114,12 +114,12 @@
     <ScrollView
         android:id="@+id/progress_scroll_view_categories"
         style="@android:style/Widget.Holo.ScrollView"
-        android:layout_width="0dp"
-        android:layout_height="173dp"
+        android:layout_width="381dp"
+        android:layout_height="182dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="70dp"
         android:background="@android:color/holo_red_dark"
         android:scrollbarStyle="outsideInset"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -229,10 +229,11 @@
     <Button
         android:id="@+id/progress_button_create"
         style="@android:style/Widget.Holo.Button"
-        android:layout_width="142dp"
+        android:layout_width="155dp"
         android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/holo_red_dark"
         android:fontFamily="@font/autour_one"
         android:text="Create Task"
@@ -240,10 +241,10 @@
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/progress_button_level"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_scroll_view_categories"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
@@ -251,8 +252,8 @@
         style="@android:style/Widget.Holo.Button.Small"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/holo_orange_dark"
         android:fontFamily="@font/autour_one"
         android:text="Sign Out"
@@ -262,16 +263,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_scroll_view_categories"
-        app:layout_constraintVertical_bias="0.937" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/progress_button_level"
         style="@android:style/Widget.Holo.Button"
-        android:layout_width="103dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="97dp"
+        android:layout_height="39dp"
         android:background="@android:color/holo_blue_dark"
         android:fontFamily="@font/autour_one"
         android:text="Level"
@@ -279,11 +278,11 @@
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintEnd_toStartOf="@+id/progress_button_sign_out"
+        app:layout_constraintHorizontal_bias="0.934"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_scroll_view_categories"
-        app:layout_constraintVertical_bias="0.959" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.974" />
 
     <TextView
         android:id="@+id/progress_text_view_categories"

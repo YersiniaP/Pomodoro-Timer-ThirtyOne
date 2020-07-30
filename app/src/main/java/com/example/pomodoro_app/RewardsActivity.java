@@ -2,9 +2,12 @@ package com.example.pomodoro_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -12,6 +15,7 @@ public class RewardsActivity extends AppCompatActivity {
 
     // For animation of XP progress bar
     private TextView level_text;
+    private Button rewards_button_close;
     private ProgressBar xp_circle;
     private TextView xp_text;
     private int progress_point = 0; // Where the xp circle is currently at
@@ -49,5 +53,20 @@ public class RewardsActivity extends AppCompatActivity {
             }
         };
         thread.start();
+
+        // Clicking Close button returns to the Progress page.
+        rewards_button_close = (Button) findViewById(R.id.rewards_button_close);
+        rewards_button_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpenProgressPage();
+            }
+        });
+    }
+
+    // When the user clicks on the Level button from the Progress page, the rewards page opens.
+    public void OpenProgressPage() {
+        Intent intent = new Intent(this, ProgressActivity.class);
+        startActivity(intent);
     }
 }
