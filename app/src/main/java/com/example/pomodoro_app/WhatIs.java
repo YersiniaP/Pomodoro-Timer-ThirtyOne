@@ -12,5 +12,3 @@ public class WhatIs extends AppCompatActivity {
         setContentView(R.layout.activity_what_is);
     }
 }
-
-//test
