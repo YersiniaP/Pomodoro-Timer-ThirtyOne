@@ -33,7 +33,7 @@ public class RewardsActivity extends AppCompatActivity {
 
         // Receives data from ProgressActivity intent
         Intent intent_email = getIntent();
-        active_email = intent_email.getStringExtra(Intent.EXTRA_EMAIL);
+        active_email = intent_email.getStringExtra(ProgressActivity.EXTRA_EMAIL);
 
         // Connecting XML elements
         level_text = findViewById(R.id.rewards_textview_next_level);
@@ -41,30 +41,30 @@ public class RewardsActivity extends AppCompatActivity {
         xp_circle = findViewById(R.id.rewards_xp_circle);
         xp_circle.setProgress(progress_point);
 
+        // Generates database for accessing the user's level stats
+        database = Room.databaseBuilder(getApplicationContext(), AppDB.class,
+                "users-database").allowMainThreadQueries().build();
+
+        Users target_user = database.users_dao().get_user_by_email(active_email);
+
+        Log.e("active_email", active_email);
+
+        // Updates UI elements
+        xp_text.setText(String.valueOf(target_user.db_xp));
+        level_text.setText(String.valueOf(target_user.db_level));
+        Log.e("active_xp", String.valueOf(target_user.db_xp));
+        Log.e("active_level", String.valueOf(target_user.db_level));
+
         // Loading in background thread
         Thread thread = new Thread() {
             @Override
             public void run() {
-                // Generates database for accessing the user's level stats
-                database = Room.databaseBuilder(getApplicationContext(), AppDB.class,
-                        "users-database").allowMainThreadQueries().build();
-
-                Users target_user = database.users_dao().get_user_by_email(active_email);
-
-                if (target_user == null){
-                    finish(); // Closes page; not sure what app should do here
-                }
-
-                // Updates UI elements
-                xp_text.setText(target_user.db_xp);
-                level_text.setText(target_user.db_level);
-
                 /*
                 I need to rework this. There needs to be a way to preserve where the progress point
                 is in the current level. Once the meter maxes out, it should reset to 0 and start
                 again but still show total xp earned this session.
                  */
-                while (progress_point < 1000){  // replace 1000 with
+                while (progress_point < MAX_XP){  // replace 1000 with
                     progress_point++;
                     android.os.SystemClock.sleep(5);
 

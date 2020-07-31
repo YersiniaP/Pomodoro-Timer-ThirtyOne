@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class ProgressActivity extends AppCompatActivity {
 
@@ -21,7 +22,7 @@ public class ProgressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_progress);
 
         Intent intent_user = getIntent(); // Used to grab email from login page
-        active_email = intent_user.getStringExtra(Intent.EXTRA_EMAIL);
+        active_email = intent_user.getStringExtra(LoginActivity.EXTRA_EMAIL);
 
         // Clicking Level button initializes the Rewards page.
         progress_button_level = (Button) findViewById(R.id.progress_button_level);
@@ -53,20 +54,14 @@ public class ProgressActivity extends AppCompatActivity {
 
     // When the user clicks on the Level button from the Progress page, the rewards page opens.
     public void OpenRewardsPage() {
-        Intent intent = new Intent(this, RewardsActivity.class);
+        Intent intent = new Intent(getApplicationContext(), RewardsActivity.class);
         intent.putExtra(EXTRA_EMAIL, active_email); // Passes active email to Rewards page.
         startActivity(intent);
     }
 
     // When the user clicks on the Level button from the Progress page, the rewards page opens.
-    public void OpenLoginPage() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
-    // When the user clicks on the Level button from the Progress page, the rewards page opens.
     public void OpenTaskCreationPage() {
-        Intent intent = new Intent(this, TaskCreationActivity.class);
+        Intent intent = new Intent(getApplicationContext(), TaskCreationActivity.class);
         startActivity(intent);
     }
 

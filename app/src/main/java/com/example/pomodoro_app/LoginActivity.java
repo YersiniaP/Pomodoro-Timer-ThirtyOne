@@ -85,14 +85,14 @@ public class LoginActivity extends AppCompatActivity {
         }
         else if (target_user.db_password.equals(password))
         {
-            Intent intent = new Intent(getApplicationContext(), ProgressActivity.class);
+            Intent intent = new Intent(this, ProgressActivity.class);
             intent.putExtra(EXTRA_EMAIL, target_user.db_email);
             startActivity(intent);
         }
         else
         {
             // generate an error message
-            Toast.makeText(getApplicationContext(), "Invalid Username/Password!",
+            Toast.makeText(this, "Invalid Username/Password!",
                     Toast.LENGTH_LONG).show();
         }
     }
@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void WhatIs() {
-        Intent intent = new Intent(this, WhatIs.class);
+        Intent intent = new Intent(getApplicationContext(), WhatIs.class);
         startActivity(intent);
     }
 
