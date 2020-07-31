@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
         else if (target_user.db_password.equals(password))
         {
             Intent intent = new Intent(this, ProgressActivity.class);
-            intent.putExtra(EXTRA_EMAIL, target_user.db_email);
+            intent.putExtra(EXTRA_EMAIL, target_user.db_email); // Sends active email to Progress
             startActivity(intent);
         }
         else

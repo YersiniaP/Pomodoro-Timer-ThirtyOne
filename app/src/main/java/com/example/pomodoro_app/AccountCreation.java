@@ -22,8 +22,6 @@ public class AccountCreation extends AppCompatActivity {
     TextView login;
     boolean isNameValid, isEmailValid, isPasswordValid;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +31,6 @@ public class AccountCreation extends AppCompatActivity {
         email =(EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         register = (Button) findViewById(R.id.register);
-
 
 
 
@@ -108,16 +105,14 @@ public class AccountCreation extends AppCompatActivity {
             Users this_user = new Users();
             this_user.db_email = target_email;
             this_user.db_password = target_password;
-            this_user.db_level = 2;
+            this_user.db_level = 1;
             this_user.db_xp = 0;
             this_user.db_username = target_name;
             database.users_dao().insert_user(this_user);
 
-            // Sets user as being logged in
-
             // Returns user back to Login page.
             Toast.makeText(getApplicationContext(), "User Account Created!", Toast.LENGTH_LONG).show();
-            finish();
+            finish(); // Kills the page instead of keeping it inactive.
         }
     }
 

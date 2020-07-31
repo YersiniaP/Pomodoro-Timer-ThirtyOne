@@ -13,7 +13,7 @@ public class ProgressActivity extends AppCompatActivity {
     private Button progress_button_level;
     private Button progress_button_sign_out;
     private Button progress_button_create_task;
-    private String active_email; // email of user
+    private String active_email; // email of active user
     public static final String EXTRA_EMAIL = "com.example.pomodoro_app.EXTRA_EMAIL";
 
     @Override
@@ -21,7 +21,8 @@ public class ProgressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
 
-        Intent intent_user = getIntent(); // Used to grab email from login page
+        // Grabs email from login page
+        Intent intent_user = getIntent();
         active_email = intent_user.getStringExtra(LoginActivity.EXTRA_EMAIL);
 
         // Clicking Level button initializes the Rewards page.
