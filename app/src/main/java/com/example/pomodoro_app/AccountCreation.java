@@ -1,7 +1,10 @@
 package com.example.pomodoro_app;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -80,29 +83,43 @@ public class AccountCreation extends AppCompatActivity {
             isPasswordValid = true;
         }
 
+        // Generates database for login validation
+        AppDB database = Room.databaseBuilder(getApplicationContext(), AppDB.class,
+                "users-database").allowMainThreadQueries().build();
 
+        String target_email = email.getText().toString();
+        String target_name = name.getText().toString();
+        String target_password = password.getText().toString();
+        Users target_email_user = database.users_dao().get_user_by_email(target_email);
+        Users target_username_user = database.users_dao().get_user_by_username(target_name);
 
-        if (isNameValid && isEmailValid && isPasswordValid) {
-            Toast.makeText(getApplicationContext(), "User Account Created!", Toast.LENGTH_LONG).show();
-            MainActivity();
+        if (target_username_user != null){
+            Toast.makeText(getApplicationContext(), "Username already exists!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        else if(target_email_user != null)
+        {
+            Toast.makeText(getApplicationContext(), "Email already exists!", Toast.LENGTH_LONG).show();
+            return;
         }
 
+        if (isNameValid && isEmailValid && isPasswordValid) {
+            // Adds user to the database.
+            Users this_user = new Users();
+            this_user.db_email = target_email;
+            this_user.db_password = target_password;
+            this_user.db_level = 0;
+            this_user.db_xp = 0;
+            this_user.db_username = target_name;
+            database.users_dao().insert_user(this_user);
+
+            // Sets user as being logged in
+
+            // Returns user back to Login page.
+            Toast.makeText(getApplicationContext(), "User Account Created!", Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
-
-
-
-
-
-
-
-
-    public void MainActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
-
-
 
 }
 

@@ -12,11 +12,16 @@ public class ProgressActivity extends AppCompatActivity {
     private Button progress_button_level;
     private Button progress_button_sign_out;
     private Button progress_button_create_task;
+    private String active_email; // email of user
+    public static final String EXTRA_EMAIL = "com.example.pomodoro_app.EXTRA_EMAIL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
+
+        Intent intent_user = getIntent(); // Used to grab email from login page
+        active_email = intent_user.getStringExtra(Intent.EXTRA_EMAIL);
 
         // Clicking Level button initializes the Rewards page.
         progress_button_level = (Button) findViewById(R.id.progress_button_level);
@@ -32,7 +37,7 @@ public class ProgressActivity extends AppCompatActivity {
         progress_button_sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OpenLoginPage();
+                finish();
             }
         });
 
@@ -49,6 +54,7 @@ public class ProgressActivity extends AppCompatActivity {
     // When the user clicks on the Level button from the Progress page, the rewards page opens.
     public void OpenRewardsPage() {
         Intent intent = new Intent(this, RewardsActivity.class);
+        intent.putExtra(EXTRA_EMAIL, active_email); // Passes active email to Rewards page.
         startActivity(intent);
     }
 
