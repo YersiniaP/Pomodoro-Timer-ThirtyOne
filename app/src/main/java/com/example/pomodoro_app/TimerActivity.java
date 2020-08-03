@@ -10,22 +10,43 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
 
+
 public class TimerActivity extends AppCompatActivity {
 
-    //hardcoding times for now
-    private static final long WORK_DURATION = 10000;
-    private static final long BREAK_DURATION = 6000;
+    /********************************************************************
+    ** hardcoding for now, eventually gathered from task creation page **
+    ** replace all right side values with links to user entered data   **
+    /*******************************************************************/
+    private int numBreaks = 2;
+    private int breakLengthSessionMinutes = 2;
+    private int totalTimeMinutes = 7;  //ie (endTime - startTime)
+    private String taskName = "Study";
+    /********************************************************************
+    ********************************************************************/
 
+    //configure time variables
+    private int numWorkSessions = numBreaks + 1;
+    private int totalBreakMinutes = numBreaks * breakLengthSessionMinutes;
+    private int totalWorkMinutes = totalTimeMinutes - totalBreakMinutes;
+    private int workSessionLengthMinutes = totalWorkMinutes / numWorkSessions;
+
+    //converts times to milliseconds
+    private long BREAK_LENGTH_MS = breakLengthSessionMinutes * 60 * 1000;
+    private long WORK_SESSION_LENGTH_MS = workSessionLengthMinutes * 60 * 1000;
+
+    //names UI elements for reference
     private TextView timeDisplay;
     private TextView taskStatus;
     private Button buttonToggleTimer;
-   // private Button buttonResetTimer;
+
     private CountDownTimer workTimer;
     private CountDownTimer breakTimer;
-    private long workRemaining = WORK_DURATION;
-    private long breakRemaining = BREAK_DURATION;
+
+    private long workRemaining = WORK_SESSION_LENGTH_MS;
+    private long breakRemaining = BREAK_LENGTH_MS;
+    private int breakCounter = 0;
     private boolean timerTicking;
-    private boolean workDone = false;
+    private boolean atWork = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,91 +55,80 @@ public class TimerActivity extends AppCompatActivity {
         timeDisplay = findViewById(R.id.countdown_text);
         taskStatus = findViewById(R.id.task_status);
         buttonToggleTimer = findViewById(R.id.button_start_pause);
-        //buttonResetTimer = findViewById(R.id.button_reset);
-        taskStatus.setText("Work Time");
+        taskStatus.setText(taskName);
         buttonToggleTimer.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 if (timerTicking) {
-                    pauseTimer();
+                    // Task pauses
+                    if(atWork) {
+                        pauseTimer(workTimer);
+                        atWork = false;
+                    } else {
+                        pauseTimer(breakTimer);
+                        atWork = true;
+                        breakCounter++;
+                    }
                 } else {
-                    startTimer();
+                    // Task starts/resumes
+                    atWork = true;
+                    taskStatus.setText(taskName);
+                    workTimer = createTimer(workRemaining);
+                    workTimer.start();
+                    timerTicking = true;
+                    buttonToggleTimer.setText("pause");
                 }
             }
         });
-
-        /*buttonResetTimer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetTimer();
-            }
-        });*/
-        updateCountDownText();
+        updateCountDownText(workRemaining);
     }
 
-    private void startTimer() {
-        workTimer = new CountDownTimer(workRemaining, 1000) {
+    private CountDownTimer createTimer(long newTime) {
+        return new CountDownTimer(newTime, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
+                updateCountDownText(millisUntilFinished);
                 workRemaining = millisUntilFinished;
-                updateCountDownText();
             }
 
             @Override
-
-            //upon finish of workTimer, creates and starts new breakTimer
             public void onFinish() {
-               taskStatus.setText("Break Time");
-               workRemaining = breakRemaining;
-
-                //create second timer
-                breakTimer = new CountDownTimer(workRemaining, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-                        workRemaining = millisUntilFinished;
-                        updateCountDownText();
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        timerTicking = false;
-                        buttonToggleTimer.setText("Start");
-                        buttonToggleTimer.setVisibility(View.INVISIBLE);
-                       // buttonResetTimer.setVisibility(View.VISIBLE);
-                    }
-                }.start();
-
                 timerTicking = false;
-                workDone = true;
                 buttonToggleTimer.setText("Start");
                 buttonToggleTimer.setVisibility(View.INVISIBLE);
-                //buttonResetTimer.setVisibility(View.VISIBLE);
+                makeAnotherTimer();
             }
-        }.start();
-        timerTicking = true;
-        buttonToggleTimer.setText("pause");
-       // buttonResetTimer.setVisibility(View.INVISIBLE);
+        };
     }
 
-    private void pauseTimer() {
-        workTimer.cancel();
+    private void makeAnotherTimer(){
+        if (!atWork) {
+            taskStatus.setText(taskName);
+            workTimer = createTimer(workRemaining);
+            workTimer.start();
+            atWork = true;
+            buttonToggleTimer.setText("Pause");
+            buttonToggleTimer.setVisibility(View.VISIBLE);
+        } else if (atWork && breakCounter < numBreaks){
+            taskStatus.setText("Break Time!");
+            breakTimer = createTimer(breakRemaining);
+            breakTimer.start();
+            atWork = false;
+            breakCounter++;
+        } //else {recursion ends; no new timers}
+    }
+
+    private void pauseTimer( CountDownTimer currentTimer) {
+        currentTimer.cancel();
         timerTicking = false;
         buttonToggleTimer.setText("Start");
-        //buttonResetTimer.setVisibility(View.VISIBLE);
     }
 
-/*    private void resetTimer() {
-        workRemaining = WORK_DURATION;
-        updateCountDownText();
-       // buttonResetTimer.setVisibility(View.INVISIBLE);
-        buttonToggleTimer.setVisibility(View.VISIBLE);
-    }*/
-
-    private void updateCountDownText() {
-        int minutes = (int) (workRemaining / 1000) / 60;
-        int seconds = (int) (workRemaining / 1000) % 60;
+    private void updateCountDownText(long timeRemainingMS) {
+        int minutes = (int) (timeRemainingMS / 1000) / 60;
+        int seconds = (int) (timeRemainingMS / 1000) % 60;
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         timeDisplay.setText(timeLeftFormatted);
     }

@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.view.View;
 
 public class LoginActivity extends AppCompatActivity {
-
     Button btn_Create_Account;
     Button btn_Sign_In;
     ImageView Tommy;
