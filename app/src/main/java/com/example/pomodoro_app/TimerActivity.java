@@ -43,7 +43,7 @@ public class TimerActivity extends AppCompatActivity {
     private CountDownTimer breakTimer;
 
     private long workRemaining = WORK_SESSION_LENGTH_MS;
-    private final long breakRemaining = BREAK_LENGTH_MS;
+    private long breakRemaining = BREAK_LENGTH_MS;
     private int breakCounter = 0;
     private boolean timerTicking;
     private boolean atWork = true;
@@ -87,6 +87,7 @@ public class TimerActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateCountDownText(millisUntilFinished);
+                workRemaining = millisUntilFinished;
             }
 
             @Override
@@ -105,6 +106,8 @@ public class TimerActivity extends AppCompatActivity {
             workTimer = createTimer(workRemaining);
             workTimer.start();
             atWork = true;
+            buttonToggleTimer.setText("Pause");
+            buttonToggleTimer.setVisibility(View.VISIBLE);
         } else if (atWork && breakCounter < numBreaks){
             taskStatus.setText("Break Time!");
             breakTimer = createTimer(breakRemaining);
