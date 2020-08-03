@@ -46,7 +46,7 @@ public class TimerActivity extends AppCompatActivity {
     private long breakRemaining = BREAK_LENGTH_MS;
     private int breakCounter = 0;
     private boolean timerTicking;
-    private boolean atWork = true;
+    private boolean atWork = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +61,7 @@ public class TimerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (timerTicking) {
+                    // Task pauses
                     if(atWork) {
                         pauseTimer(workTimer);
                         atWork = false;
@@ -70,6 +71,8 @@ public class TimerActivity extends AppCompatActivity {
                         breakCounter++;
                     }
                 } else {
+                    // Task starts/resumes
+                    atWork = true;
                     taskStatus.setText(taskName);
                     workTimer = createTimer(workRemaining);
                     workTimer.start();
