@@ -18,10 +18,11 @@ public class RewardsActivity extends AppCompatActivity {
     private Handler handler = new Handler(Looper.getMainLooper());
 
     // UI
-    private TextView level_text;
+    private TextView rewards_level;
     private Button rewards_button_close;
-    private ProgressBar xp_circle;
-    private TextView xp_text;
+    private ProgressBar rewards_xp_circle;
+    private TextView rewards_total_xp;
+    private TextView rewards_remaining_xp;
 
     // Database
     private AppDB database;
@@ -39,10 +40,11 @@ public class RewardsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rewards);
 
         // Connects elements
-        level_text = findViewById(R.id.rewards_textview_next_level);
-        xp_text = findViewById(R.id.rewards_textview_total_xp);
-        xp_circle = findViewById(R.id.rewards_xp_circle);
-        xp_circle.setProgress(current_xp_position);
+        rewards_level = findViewById(R.id.rewards_textview_level);
+        rewards_total_xp = findViewById(R.id.rewards_textview_total_xp);
+        rewards_xp_circle = findViewById(R.id.rewards_xp_circle);
+        rewards_xp_circle.setProgress(current_xp_position);
+        rewards_remaining_xp = findViewById(R.id.rewards_textview_remaining_xp);
 
         // Clicking Close button returns to the Progress page.
         rewards_button_close = (Button) findViewById(R.id.rewards_button_close);
@@ -77,24 +79,24 @@ public class RewardsActivity extends AppCompatActivity {
         stopping_xp_position = target_user.db_xp % MAX_XP;
 
         // Updates elements depending on database information
-        xp_text.setText(String.valueOf(target_user.db_xp));
-        level_text.setText(String.valueOf(target_user.db_level));
+        rewards_total_xp.setText(String.valueOf(target_user.db_xp));
+        rewards_level.setText(String.valueOf(target_user.db_level));
 
-        // Loading in background thread
+        /* In a separate thread, the xp progress starts at zero and increases until it hits the
+        amount of xp left in that level. */
         Thread thread = new Thread() {
             @Override
             public void run() {
-                while (current_xp_position < MAX_XP){  // replace 1000 with
+                while (current_xp_position < stopping_xp_position){
                     current_xp_position++;
-                    android.os.SystemClock.sleep(5);
-
+                    android.os.SystemClock.sleep(1);
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            // Updates progress bar each second until the xp level has been reached
-                            xp_circle.setProgress(current_xp_position);
-                            String xp_string = current_xp_position + " XP";
-                            xp_text.setText(xp_string);
+                            rewards_xp_circle.setProgress(current_xp_position);
+                            Integer reversed_xp = MAX_XP - current_xp_position;
+                            String xp_string = reversed_xp + " XP";
+                            rewards_remaining_xp.setText(xp_string);
                         }
                     });
                 }
