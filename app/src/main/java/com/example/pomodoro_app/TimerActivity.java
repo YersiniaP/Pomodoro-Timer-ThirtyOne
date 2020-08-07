@@ -28,7 +28,7 @@ public class TimerActivity extends AppCompatActivity {
     private int numWorkSessions = numBreaks + 1;
     private int totalBreakMinutes = numBreaks * breakLengthSessionMinutes;
     private int totalWorkMinutes = totalTimeMinutes - totalBreakMinutes;
-    private int workSessionLengthMinutes = totalWorkMinutes / numWorkSessions;
+    private long workSessionLengthMinutes = totalWorkMinutes / numWorkSessions;
 
     //converts times to milliseconds
     private long BREAK_LENGTH_MS = breakLengthSessionMinutes * 60 * 1000;
@@ -46,7 +46,7 @@ public class TimerActivity extends AppCompatActivity {
     private long breakRemaining = BREAK_LENGTH_MS;
     private int breakCounter = 0;
     private boolean timerTicking;
-    private boolean atWork = false;
+    private boolean atWork = true; // false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +74,7 @@ public class TimerActivity extends AppCompatActivity {
                     // Task starts/resumes
                     atWork = true;
                     taskStatus.setText(taskName);
-                    workTimer = createTimer(workRemaining);
+                    workTimer = createTimer( workRemaining);
                     workTimer.start();
                     timerTicking = true;
                     buttonToggleTimer.setText("pause");
@@ -96,8 +96,9 @@ public class TimerActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 timerTicking = false;
-                buttonToggleTimer.setText("Start");
+                buttonToggleTimer.setText("start");
                 buttonToggleTimer.setVisibility(View.INVISIBLE);
+                //atWork = !atWork;
                 makeAnotherTimer();
             }
         };
@@ -105,8 +106,9 @@ public class TimerActivity extends AppCompatActivity {
 
     private void makeAnotherTimer(){
         if (!atWork) {
-            taskStatus.setText(taskName);
-            workTimer = createTimer(workRemaining);
+            taskStatus.setText("taskName");
+            timerTicking = true; //*
+            workTimer = createTimer(WORK_SESSION_LENGTH_MS);
             workTimer.start();
             atWork = true;
             buttonToggleTimer.setText("Pause");
@@ -116,14 +118,18 @@ public class TimerActivity extends AppCompatActivity {
             breakTimer = createTimer(breakRemaining);
             breakTimer.start();
             atWork = false;
+            timerTicking = true; //*
             breakCounter++;
         } //else {recursion ends; no new timers}
+        else {
+            taskStatus.setText("DONE!");
+        }
     }
 
     private void pauseTimer( CountDownTimer currentTimer) {
         currentTimer.cancel();
         timerTicking = false;
-        buttonToggleTimer.setText("Start");
+        buttonToggleTimer.setText("start");
     }
 
     private void updateCountDownText(long timeRemainingMS) {
@@ -132,4 +138,108 @@ public class TimerActivity extends AppCompatActivity {
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         timeDisplay.setText(timeLeftFormatted);
     }
+
+/*    private StopWatch createStopWatch(){
+        return ;
+    }*/
+
+    private class StopWatch {
+
+        //time variables
+        private long startTimeNS;
+        private long endTimerNS;
+        private long pausePointNS;
+
+        //status variables
+        private boolean stopWatchTicking;
+        private boolean stopWatchPaused;
+
+        private StopWatch(){
+            startTimeNS = 0;
+            endTimerNS = 0;
+            pausePointNS = 0;
+        }
+
+        //get functions
+        public boolean isStopWatchTicking() {
+            return stopWatchTicking;
+        }
+        public boolean isStopWatchPaused() {
+            return stopWatchPaused;
+        }
+
+        public void startStopWatch(){
+            startTimeNS = System.nanoTime();
+            stopWatchTicking = true;
+            stopWatchPaused = false;
+        }
+
+        public long stop() {
+            if (!isStopWatchTicking()) {
+                return -1;
+            } else if (isStopWatchPaused()) {
+                stopWatchTicking = false;
+                stopWatchPaused = false;
+
+                return pausePointNS - startTimeNS;
+            } else {
+                endTimerNS = System.nanoTime();
+                stopWatchTicking = false;
+                return endTimerNS - startTimeNS;
+            }
+        }
+
+        /**
+         * Pauses the Stopwatch
+         *
+         * @return The time elapsed so far
+         */
+        public long pause() {
+            if (!isStopWatchTicking()) {
+                return -1;
+            } else if (isStopWatchPaused()) {
+                return (pausePointNS - startTimeNS);
+            } else {
+                pausePointNS = System.nanoTime();
+                stopWatchPaused = true;
+                return (pausePointNS - startTimeNS);
+            }
+        }
+
+        /**
+         * Resumes the StopWatch from it's paused state
+         */
+        public void resume() {
+            if (isStopWatchPaused() && isStopWatchTicking()) {
+                startTimeNS = System.nanoTime() - (pausePointNS - startTimeNS);
+                stopWatchPaused = false;
+            }
+        }
+
+        /**
+         * Returns the total time elapsed
+         *
+         * @return The total time elapsed
+         */
+        public long elapsed() {
+            if (isStopWatchTicking()) {
+                if (isStopWatchPaused())
+                    return (pausePointNS - startTimeNS);
+                return (System.nanoTime() - startTimeNS);
+            } else
+                return (endTimerNS - startTimeNS);
+        }
+
+        /**
+         * Returns the number of seconds this Stopwatch has elapsed
+         *
+         * @return The String of the number of seconds
+         */
+        public String toString() {
+            long elapsed = elapsed();
+            return ((double) elapsed / 1000000000.0) + " Seconds";
+        }
+
+
+    };
 }

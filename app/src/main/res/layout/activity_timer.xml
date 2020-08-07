@@ -36,21 +36,28 @@
         android:text="start"
         android:background="@color/colorAccent"
         android:textColor= "@color/colorPrimaryDark" />
-   <!-- <Button
-        android:id="@+id/button_reset"
+
+  <!--  <Button
+        android:id="@+id/pause_stopwatch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/countdown_text"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="50dp"
-        android:layout_toEndOf="@+id/button_start_pause"
-        android:text="reset"
-        android:visibility="invisible"
-        tools:visibility="visible"
-        android:layout_marginLeft="12dp"
-        android:background="@color/colorPrimary"
-        android:textColor= "@color/colorPrimaryDark"
-        android:layout_toRightOf="@+id/button_start_pause" />-->
+        android:layout_alignTop="@id/button_start_pause"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:text="Toggle Stopwatch"
+        android:textSize="15sp"
+        android:background="@color/colorAccent"
+        android:textColor= "@color/colorPrimaryDark"/>
 
+    <TextView
+        android:id="@+id/stopwatch_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/pause_stopwatch"
+        android:layout_alignLeft="@id/pause_stopwatch"
+        android:layout_marginLeft="180dp"
+        android:text="seconds paused"
+        android:textSize="25sp"
+        android:textColor= "@color/colorPrimaryDark"/>-->
 
 </RelativeLayout>
