@@ -37,14 +37,14 @@
         android:background="@color/colorAccent"
         android:textColor= "@color/colorPrimaryDark" />
 
-  <!--  <Button
-        android:id="@+id/pause_stopwatch"
+   <Button
+        android:id="@+id/button_pause_stopwatch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/button_start_pause"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="20dp"
-        android:text="Toggle Stopwatch"
+        android:text="Update Paused Time"
         android:textSize="15sp"
         android:background="@color/colorAccent"
         android:textColor= "@color/colorPrimaryDark"/>
@@ -53,11 +53,11 @@
         android:id="@+id/stopwatch_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/pause_stopwatch"
-        android:layout_alignLeft="@id/pause_stopwatch"
-        android:layout_marginLeft="180dp"
-        android:text="seconds paused"
+        android:layout_alignBaseline="@id/button_pause_stopwatch"
+        android:layout_alignLeft="@id/button_pause_stopwatch"
+        android:layout_marginLeft="200dp"
+        android:text="0 seconds"
         android:textSize="25sp"
-        android:textColor= "@color/colorPrimaryDark"/>-->
+        android:textColor= "@color/colorPrimaryDark"/>
 
 </RelativeLayout>
