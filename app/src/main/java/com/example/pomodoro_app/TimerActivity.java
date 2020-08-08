@@ -18,21 +18,21 @@ public class TimerActivity extends AppCompatActivity {
     ** replace all right side values with links to user entered data   **
     /*******************************************************************/
     private int numBreaks = 2;
-    private int breakLengthSessionMinutes = 2;
-    private int totalTimeMinutes = 7;  //ie (endTime - startTime)
+    private double breakLengthSessionMinutes = 0.1;
+    private int totalTimeMinutes = 1;  //ie (endTime - startTime)
     private String taskName = "Study";
     /********************************************************************
     ********************************************************************/
 
     //configure time variables
     private int numWorkSessions = numBreaks + 1;
-    private int totalBreakMinutes = numBreaks * breakLengthSessionMinutes;
-    private int totalWorkMinutes = totalTimeMinutes - totalBreakMinutes;
-    private long workSessionLengthMinutes = totalWorkMinutes / numWorkSessions;
+    private double totalBreakMinutes = numBreaks * breakLengthSessionMinutes;
+    private double totalWorkMinutes = totalTimeMinutes - totalBreakMinutes;
+    private double workSessionLengthMinutes = totalWorkMinutes / numWorkSessions;
 
     //converts times to milliseconds
-    private long BREAK_LENGTH_MS = breakLengthSessionMinutes * 60 * 1000;
-    private long WORK_SESSION_LENGTH_MS = workSessionLengthMinutes * 60 * 1000;
+    private long BREAK_LENGTH_MS = (long) (breakLengthSessionMinutes * 60 * 1000);
+    private long WORK_SESSION_LENGTH_MS = (long)(workSessionLengthMinutes * 60 * 1000);
 
     //names UI elements for reference
     private TextView timeDisplay;
@@ -46,7 +46,12 @@ public class TimerActivity extends AppCompatActivity {
     private long breakRemaining = BREAK_LENGTH_MS;
     private int breakCounter = 0;
     private boolean timerTicking;
-    private boolean atWork = true; // false;
+    private boolean atWork = true;
+
+    //stopwatch variables
+    private Button buttonToggleStopWatch;
+    private StopWatch pausedTimeTracker;
+    private TextView stopWatchDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,30 +59,52 @@ public class TimerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timer);
         timeDisplay = findViewById(R.id.countdown_text);
         taskStatus = findViewById(R.id.task_status);
+        stopWatchDisplay = findViewById(R.id.stopwatch_display);
         buttonToggleTimer = findViewById(R.id.button_start_pause);
         taskStatus.setText(taskName);
+        pausedTimeTracker = new StopWatch();
+        buttonToggleStopWatch = findViewById(R.id.button_pause_stopwatch);
+
+        buttonToggleStopWatch.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if (pausedTimeTracker.isStopWatchTicking()) {
+                    stopWatchDisplay.setText(pausedTimeTracker.toString());
+                }
+            }
+        });
+
         buttonToggleTimer.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                // Task pauses
                 if (timerTicking) {
-                    // Task pauses
+
+                    //Pauses the Work Timer
                     if(atWork) {
                         pauseTimer(workTimer);
                         atWork = false;
-                    } else {
-                        pauseTimer(breakTimer);
-                        atWork = true;
-                        breakCounter++;
+
+                        //toggle pause stopwatch
+                        if (pausedTimeTracker.elapsed() != 0){
+                            pausedTimeTracker.resume();
+                        } else {
+                            pausedTimeTracker.startStopWatch();
+                        }
                     }
-                } else {
-                    // Task starts/resumes
+                }
+
+                // Task starts/resumes
+                else {
                     atWork = true;
                     taskStatus.setText(taskName);
-                    workTimer = createTimer( workRemaining);
+                    workTimer = createTimer(workRemaining);
                     workTimer.start();
                     timerTicking = true;
                     buttonToggleTimer.setText("pause");
+
+                    pausedTimeTracker.pause();
                 }
             }
         });
@@ -98,30 +125,43 @@ public class TimerActivity extends AppCompatActivity {
                 timerTicking = false;
                 buttonToggleTimer.setText("start");
                 buttonToggleTimer.setVisibility(View.INVISIBLE);
-                //atWork = !atWork;
                 makeAnotherTimer();
             }
         };
     }
 
     private void makeAnotherTimer(){
+
+        //transitioning from break to work timer
         if (!atWork) {
-            taskStatus.setText("taskName");
-            timerTicking = true; //*
+
+            //change timer status to work
+            taskStatus.setText(taskName);
+            timerTicking = true;
             workTimer = createTimer(WORK_SESSION_LENGTH_MS);
             workTimer.start();
             atWork = true;
             buttonToggleTimer.setText("Pause");
             buttonToggleTimer.setVisibility(View.VISIBLE);
-        } else if (atWork && breakCounter < numBreaks){
+
+            //stop pause stopwatch
+            pausedTimeTracker.pause();
+        }
+        //transitioning from work to break timer
+        else if (atWork && breakCounter < numBreaks){
+
+            //change timer status to break
             taskStatus.setText("Break Time!");
             breakTimer = createTimer(breakRemaining);
             breakTimer.start();
             atWork = false;
             timerTicking = true; //*
             breakCounter++;
-        } //else {recursion ends; no new timers}
-        else {
+
+            //resume pauseTimer
+            pausedTimeTracker.resume();
+        }
+        else { //recursion ends; no new timers
             taskStatus.setText("DONE!");
         }
     }
@@ -138,11 +178,6 @@ public class TimerActivity extends AppCompatActivity {
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         timeDisplay.setText(timeLeftFormatted);
     }
-
-/*    private StopWatch createStopWatch(){
-        return ;
-    }*/
-
     private class StopWatch {
 
         //time variables
@@ -151,9 +186,10 @@ public class TimerActivity extends AppCompatActivity {
         private long pausePointNS;
 
         //status variables
-        private boolean stopWatchTicking;
-        private boolean stopWatchPaused;
+        private boolean stopWatchTicking = false;
+        private boolean stopWatchPaused = false;
 
+        //constructor
         private StopWatch(){
             startTimeNS = 0;
             endTimerNS = 0;
@@ -236,10 +272,8 @@ public class TimerActivity extends AppCompatActivity {
          * @return The String of the number of seconds
          */
         public String toString() {
-            long elapsed = elapsed();
-            return ((double) elapsed / 1000000000.0) + " Seconds";
+            long timeElapsed = elapsed();
+            return ((double) timeElapsed / 1000000000.0) + " Seconds";
         }
-
-
     };
 }
