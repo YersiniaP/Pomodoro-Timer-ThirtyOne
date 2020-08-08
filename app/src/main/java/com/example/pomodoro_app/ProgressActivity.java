@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -23,6 +26,8 @@ public class ProgressActivity extends AppCompatActivity {
     private String active_email; // email of active user
     public static final String EXTRA_EMAIL = "com.example.pomodoro_app.EXTRA_EMAIL";
     private PieChart pie_chart;
+    private Description pie_description;
+    private Legend pie_legend;
     ArrayList<PieEntry> pie_entries = new ArrayList<>(); // Converted Category objects
     ArrayList<Category> pie_categories = new ArrayList<>(); // Category objects
 
@@ -90,20 +95,25 @@ public class ProgressActivity extends AppCompatActivity {
         }
 
         // Customizes pie's appearance
-        PieDataSet pie_data_set = new PieDataSet(pie_entries, "Categories");
+        PieDataSet pie_data_set = new PieDataSet(pie_entries, "");
         pie_data_set.setColors(ColorTemplate.COLORFUL_COLORS);
         pie_data_set.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
         pie_data_set.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
         pie_data_set.setValueTextSize(16);
-
-
-        pie_chart.invalidate(); // Refreshes pie chart
+        pie_chart.setHoleRadius(0);
+        //pie_chart.setNoDataText("You haven't completed any tasks today!");
+        pie_chart.setTransparentCircleRadius(0);
+        pie_description = pie_chart.getDescription();
+        pie_description.setEnabled(false);
+        pie_chart.setDescription(pie_description);
+        pie_legend = pie_chart.getLegend();
+        pie_legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+        pie_legend.setWordWrapEnabled(true);
+        pie_chart.animateXY(1000, 1000); // Refreshes pie chart
 
         // Ties data to pie object
         PieData pie_data = new PieData(pie_data_set);
         pie_chart.setData(pie_data);
-
-        // Chart legend stuff here
     }
 
     // When the user clicks on the Level button from the Progress page, the rewards page opens.
