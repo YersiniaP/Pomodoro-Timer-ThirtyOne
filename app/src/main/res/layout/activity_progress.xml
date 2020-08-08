@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".ProgressActivity">
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/progress_pie_chart"
+        android:layout_width="0dp"
+        android:layout_height="383dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.224" />
+
     <TextView
         android:id="@+id/progress_text_title"
         android:layout_width="0dp"
@@ -27,22 +38,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/progress_image_pie_chart"
-        android:layout_width="0dp"
-        android:layout_height="174dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.127"
-        app:srcCompat="@drawable/pie"
-        tools:srcCompat="@drawable/pie" />
-
     <TextView
         android:id="@+id/text_view_total_break_time"
         android:layout_width="0dp"
@@ -58,7 +53,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.378" />
+        app:layout_constraintVertical_bias="0.736" />
 
     <TextView
         android:id="@+id/text_view_breaks"
@@ -75,7 +70,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.426" />
+        app:layout_constraintVertical_bias="0.785" />
 
     <TextView
         android:id="@+id/progress_text_total_task_time"
@@ -92,7 +87,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.475" />
+        app:layout_constraintVertical_bias="0.834" />
 
     <TextView
         android:id="@+id/progress_text_tasks_completed"
@@ -106,125 +101,10 @@
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.524" />
-
-    <ScrollView
-        android:id="@+id/progress_scroll_view_categories"
-        style="@android:style/Widget.Holo.ScrollView"
-        android:layout_width="381dp"
-        android:layout_height="182dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="70dp"
-        android:background="@android:color/holo_red_dark"
-        android:scrollbarStyle="outsideInset"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-        <LinearLayout
-            android:id="@+id/progress_linear_layout_categories"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/progress_text_view_cat1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/autour_one"
-                android:text="- Homework: 35m"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/progress_text_view_cat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/autour_one"
-                android:text="- Work: 1h 2m"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/progress_text_view_cat2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/autour_one"
-                android:text="- Coding: 4h 30m"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/progress_text_view_cat3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/autour_one"
-                android:text="- Cooking: 5m"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/progress_text_view_cat12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/autour_one"
-                android:text="- Research: 3h 22m"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/progress_text_view_cat19"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/autour_one"
-                android:text="- Game Development: 2h 30m"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/progress_text_view_cat20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/autour_one"
-                android:text="- Sewing: 1h 7m"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/progress_text_view_cat21"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/autour_one"
-                android:text="- Chores: 50m"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/progress_text_view_cat22"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/autour_one"
-                android:text="- Walk Dog: 30m"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/progress_text_view_cat23"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/autour_one"
-                android:text="- Fitness: 1h 7m"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/progress_text_view_cat24"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/autour_one"
-                android:text="- Design App: 100h 59m"
-                android:textColor="@color/white" />
-
-        </LinearLayout>
-    </ScrollView>
+        app:layout_constraintVertical_bias="0.883" />
 
     <Button
         android:id="@+id/progress_button_create"
@@ -283,37 +163,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.974" />
-
-    <TextView
-        android:id="@+id/progress_text_view_categories"
-        android:layout_width="0dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/autour_one"
-        android:text="Categories:"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.594" />
-
-    <View
-        android:id="@+id/progress_divider_tasks_breaks"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.546" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

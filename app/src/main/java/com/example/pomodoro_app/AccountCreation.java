@@ -105,8 +105,8 @@ public class AccountCreation extends AppCompatActivity {
             Users this_user = new Users();
             this_user.db_email = target_email;
             this_user.db_password = target_password;
-            this_user.db_level = 1;
-            this_user.db_xp = 0;
+            this_user.db_level = 3;
+            this_user.db_xp = 1500;
             this_user.db_username = target_name;
             database.users_dao().insert_user(this_user);
 
