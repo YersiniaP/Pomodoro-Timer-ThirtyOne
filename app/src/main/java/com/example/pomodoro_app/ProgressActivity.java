@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -128,5 +129,11 @@ public class ProgressActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), TaskCreationActivity.class);
         startActivity(intent);
     }
+
+    public void SignOut() {
+        Toast.makeText(ProgressActivity.this, "Signed Off, GoodBye!", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
 
 }

@@ -7,6 +7,7 @@ import androidx.room.Room;
 import android.os.Parcelable;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 import android.widget.Button;
@@ -18,6 +19,8 @@ import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.w3c.dom.Text;
+
 public class LoginActivity extends AppCompatActivity {
     Button btn_Create_Account;
     Button btn_Sign_In;
@@ -27,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private AppDB database;
     public static final String EXTRA_EMAIL = "com.example.pomodoro_app.EXTRA_EMAIL";
     FirebaseAuth FirebaseAuth;
+    TextView forgot_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         **************************************************************************** */
         editTextTextEmailAddress = (EditText) findViewById(R.id.editTextTextEmailAddress);
         editTextTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
-
+        forgot_password = (TextView) findViewById(R.id.forgot_password);
         //Click the 'Create Account button and go to the Account creation activity
         btn_Create_Account = (Button) findViewById(R.id.btn_Create_Account);
         Tommy = (ImageView) findViewById(R.id.Tommy);
@@ -72,6 +76,15 @@ public class LoginActivity extends AppCompatActivity {
                 WhatIs();
             }
         });
+
+        forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PasswordRecovery();
+            }
+        });
+
+
     }
 
 
@@ -135,7 +148,10 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
 
-
+            public void PasswordRecovery() {
+                Intent intent = new Intent(getApplicationContext(), PasswordRecovery.class);
+                startActivity(intent);
+            }
 
 
 
