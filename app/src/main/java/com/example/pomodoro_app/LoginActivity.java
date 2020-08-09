@@ -1,5 +1,6 @@
 package com.example.pomodoro_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
@@ -11,6 +12,11 @@ import android.content.Intent;
 import android.widget.Button;
 import android.os.Bundle;
 import android.view.View;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseError;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
     Button btn_Create_Account;
@@ -20,16 +26,22 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextTextPassword;
     private AppDB database;
     public static final String EXTRA_EMAIL = "com.example.pomodoro_app.EXTRA_EMAIL";
+    FirebaseAuth FirebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //get Firebase instance
+        FirebaseAuth = FirebaseAuth.getInstance();
+
         // Generates database for login validation
+
+        /* ********************** -----original database------ **********************
         database = Room.databaseBuilder(getApplicationContext(), AppDB.class,
                 "users-database").allowMainThreadQueries().build();
-
+        **************************************************************************** */
         editTextTextEmailAddress = (EditText) findViewById(R.id.editTextTextEmailAddress);
         editTextTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
 
@@ -62,57 +74,73 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
     // Validates credentials and sends user to Progress page
     public void GoToProgress() {
         // Validates formatting input
         String email = editTextTextEmailAddress.getText().toString();
         String password = editTextTextPassword.getText().toString();
-        Users target_user = database.users_dao().get_user_by_email(email); // The user to look for
+        // --- original database---Users target_user = database.users_dao().get_user_by_email(email); // The user to look for
 
-        if (email.isEmpty() || password.isEmpty()){
+        if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Missing input.",
                     Toast.LENGTH_LONG).show();
             return;
         }
 
+        /* **************************** --- original database--- *********************
         // Loads the Progress page
-        if (target_user == null)
-        {
+        if (target_user == null) {
             // generate an error message
             Toast.makeText(getApplicationContext(), "Email not found.",
                     Toast.LENGTH_LONG).show();
-        }
-        else if (target_user.db_password.equals(password))
-        {
+        } else if (target_user.db_password.equals(password)) {
             Intent intent = new Intent(this, ProgressActivity.class);
             intent.putExtra(EXTRA_EMAIL, target_user.db_email); // Sends active email to Progress
             startActivity(intent);
-        }
-        else
-        {
+        } else {
             // generate an error message
             Toast.makeText(this, "Invalid Username/Password!",
                     Toast.LENGTH_LONG).show();
         }
-    }
 
-    public void AccountCreation() {
-        Intent intent = new Intent(getApplicationContext(), AccountCreation.class);
-        startActivity(intent);
-    }
+        ************************************************************************************** */
 
-    public void WhatIs() {
-        Intent intent = new Intent(getApplicationContext(), WhatIs.class);
-        startActivity(intent);
-    }
+        FirebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(),ProgressActivity.class));
+                }
+                else
+                {
+                    Toast.makeText(LoginActivity.this, "Invalid Email/Password", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+
+    } //end of GoProgress function
+
+
+            public void AccountCreation() {
+                Intent intent = new Intent(getApplicationContext(), AccountCreation.class);
+                startActivity(intent);
+            }
+
+            public void WhatIs() {
+                Intent intent = new Intent(getApplicationContext(), WhatIs.class);
+                startActivity(intent);
+            }
 
 
 
 
 
 
-
-}
+    }// end of public class loginActivity
 
 
 

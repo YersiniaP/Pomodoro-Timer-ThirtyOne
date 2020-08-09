@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -15,6 +16,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -39,7 +41,7 @@ public class ProgressActivity extends AppCompatActivity {
 
         // Grabs email from login page
         Intent intent_user = getIntent();
-        active_email = intent_user.getStringExtra(LoginActivity.EXTRA_EMAIL);
+        //active_email = intent_user.getStringExtra(LoginActivity.EXTRA_EMAIL);
 
         // Binds UI event listeners
         BindButtons();
@@ -64,7 +66,7 @@ public class ProgressActivity extends AppCompatActivity {
         progress_button_sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                SignOut(view);
             }
         });
 
@@ -127,6 +129,14 @@ public class ProgressActivity extends AppCompatActivity {
     public void OpenTaskCreationPage() {
         Intent intent = new Intent(getApplicationContext(), TaskCreationActivity.class);
         startActivity(intent);
+    }
+
+    // When the user clicks the sign out button from the Progress page, the Login page opens.
+    public void SignOut(View view) {
+        FirebaseAuth.getInstance().signOut();
+        //startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        Toast.makeText(ProgressActivity.this, "Goodbye!", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
 }
