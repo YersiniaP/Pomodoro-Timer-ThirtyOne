@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "352390259597",
+    "firebase_url": "https://pomodoro-app-88955.firebaseio.com",
+    "project_id": "pomodoro-app-88955",
+    "storage_bucket": "pomodoro-app-88955.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352390259597:android:ef58e8ff9f3ffc4f9993c4",
+        "android_client_info": {
+          "package_name": "com.example.pomodoro_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352390259597-k1o8rvbj8maes7nu4nsi0m90l08c270n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pomodoro_app",
+            "certificate_hash": "a4eb0a468f3bae40b018e9c1bd9b1ff3716aa30c"
+          }
+        },
+        {
+          "client_id": "352390259597-su50fibpltaghqg1dqnl6rpg2rds35cp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa1oZ82-iCW9LI12dM52-L0NvYCbKP3Qg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352390259597-su50fibpltaghqg1dqnl6rpg2rds35cp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

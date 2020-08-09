@@ -65,7 +65,7 @@
         app:layout_constraintVertical_bias="0.219" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/forgot_password"
         android:layout_width="143dp"
         android:layout_height="22dp"
         android:fontFamily="@font/autour_one"
