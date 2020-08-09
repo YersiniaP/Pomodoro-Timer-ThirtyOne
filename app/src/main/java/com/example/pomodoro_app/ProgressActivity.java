@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -65,7 +66,7 @@ public class ProgressActivity extends AppCompatActivity {
         progress_button_sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                SignOut(view);
             }
         });
 
@@ -133,7 +134,8 @@ public class ProgressActivity extends AppCompatActivity {
     // When the user clicks the sign out button from the Progress page, the Login page opens.
     public void SignOut(View view) {
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        //startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        Toast.makeText(ProgressActivity.this, "Goodbye!", Toast.LENGTH_SHORT).show();
         finish();
     }
 
