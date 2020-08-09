@@ -15,6 +15,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -39,7 +40,7 @@ public class ProgressActivity extends AppCompatActivity {
 
         // Grabs email from login page
         Intent intent_user = getIntent();
-        active_email = intent_user.getStringExtra(LoginActivity.EXTRA_EMAIL);
+        //active_email = intent_user.getStringExtra(LoginActivity.EXTRA_EMAIL);
 
         // Binds UI event listeners
         BindButtons();
@@ -127,6 +128,13 @@ public class ProgressActivity extends AppCompatActivity {
     public void OpenTaskCreationPage() {
         Intent intent = new Intent(getApplicationContext(), TaskCreationActivity.class);
         startActivity(intent);
+    }
+
+    // When the user clicks the sign out button from the Progress page, the Login page opens.
+    public void SignOut(View view) {
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        finish();
     }
 
 }
