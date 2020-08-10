@@ -2,9 +2,6 @@ package com.example.pomodoro_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-
-import android.os.Parcelable;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,11 +12,11 @@ import android.os.Bundle;
 import android.view.View;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseError;
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.w3c.dom.Text;
+
 
 public class LoginActivity extends AppCompatActivity {
     Button btn_Create_Account;
@@ -27,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
     ImageView Tommy;
     EditText editTextTextEmailAddress;
     EditText editTextTextPassword;
-    private AppDB database;
     public static final String EXTRA_EMAIL = "com.example.pomodoro_app.EXTRA_EMAIL";
     FirebaseAuth FirebaseAuth;
     TextView forgot_password;
@@ -56,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_Create_Account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AccountCreation();
+                startActivity(new Intent(getApplicationContext(),AccountCreation.class));
             }
         });
 
@@ -73,14 +69,14 @@ public class LoginActivity extends AppCompatActivity {
         Tommy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WhatIs();
+                startActivity(new Intent(getApplicationContext(),WhatIs.class));
             }
         });
 
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PasswordRecovery();
+                startActivity(new Intent(getApplicationContext(), PasswordRecovery.class));
             }
         });
 
@@ -137,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
 
     } //end of GoProgress function
 
-
+        /*
             public void AccountCreation() {
                 Intent intent = new Intent(getApplicationContext(), AccountCreation.class);
                 startActivity(intent);
@@ -152,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PasswordRecovery.class);
                 startActivity(intent);
             }
-
+*/
 
 
 
