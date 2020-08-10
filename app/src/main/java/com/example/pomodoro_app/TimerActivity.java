@@ -276,7 +276,4 @@ public class TimerActivity extends AppCompatActivity {
             return ((double) timeElapsed / 1000000000.0) + " Seconds";
         }
     };
-
-
-
 }
