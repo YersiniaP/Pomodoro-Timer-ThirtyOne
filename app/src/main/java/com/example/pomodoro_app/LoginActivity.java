@@ -41,6 +41,11 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseAuth = FirebaseAuth.getInstance();
 
         // Generates database for login validation
+
+        /* ********************** -----original database------ **********************
+        database = Room.databaseBuilder(getApplicationContext(), AppDB.class,
+                "users-database").allowMainThreadQueries().build();
+        **************************************************************************** */
         editTextTextEmailAddress = (EditText) findViewById(R.id.editTextTextEmailAddress);
         editTextTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
         forgot_password = (TextView) findViewById(R.id.forgot_password);
@@ -95,6 +100,24 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             return;
         }
+
+        /* **************************** --- original database--- *********************
+        // Loads the Progress page
+        if (target_user == null) {
+            // generate an error message
+            Toast.makeText(getApplicationContext(), "Email not found.",
+                    Toast.LENGTH_LONG).show();
+        } else if (target_user.db_password.equals(password)) {
+            Intent intent = new Intent(this, ProgressActivity.class);
+            intent.putExtra(EXTRA_EMAIL, target_user.db_email); // Sends active email to Progress
+            startActivity(intent);
+        } else {
+            // generate an error message
+            Toast.makeText(this, "Invalid Username/Password!",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        ************************************************************************************** */
 
         FirebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
