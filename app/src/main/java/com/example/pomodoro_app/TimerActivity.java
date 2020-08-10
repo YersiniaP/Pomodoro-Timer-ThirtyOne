@@ -5,9 +5,7 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Locale;
 
 
@@ -17,10 +15,10 @@ public class TimerActivity extends AppCompatActivity {
     ** hardcoding for now, eventually gathered from task creation page **
     ** replace all right side values with links to user entered data   **
     /*******************************************************************/
-    private int numBreaks = 2;
-    private double breakLengthSessionMinutes = 0.1;
-    private int totalTimeMinutes = 1;  //ie (endTime - startTime)
-    private String taskName = "Study";
+    public static int numBreaks;// = 2;
+    public static double breakLengthSessionMinutes;// = 0.1;
+    public static int totalTimeMinutes = 1;  //ie (endTime - startTime)
+    public static String taskName;// = "Study";
     /********************************************************************
     ********************************************************************/
 
@@ -178,102 +176,90 @@ public class TimerActivity extends AppCompatActivity {
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         timeDisplay.setText(timeLeftFormatted);
     }
-    private class StopWatch {
 
-        //time variables
-        private long startTimeNS;
-        private long endTimerNS;
-        private long pausePointNS;
+};
 
-        //status variables
-        private boolean stopWatchTicking = false;
-        private boolean stopWatchPaused = false;
+class StopWatch {
 
-        //constructor
-        private StopWatch(){
-            startTimeNS = 0;
-            endTimerNS = 0;
-            pausePointNS = 0;
+    //time variables
+    private long startTimeNS;
+    private long endTimerNS;
+    private long pausePointNS;
+
+    //status variables
+    private boolean stopWatchTicking = false;
+    private boolean stopWatchPaused = false;
+
+    //constructor
+    protected StopWatch(){
+        startTimeNS = 0;
+        endTimerNS = 0;
+        pausePointNS = 0;
+    }
+
+    //get functions
+    public boolean isStopWatchTicking() {
+        return stopWatchTicking;
+    }
+    public boolean isStopWatchPaused() {
+        return stopWatchPaused;
+    }
+
+    public void startStopWatch(){
+        startTimeNS = System.nanoTime();
+        stopWatchTicking = true;
+        stopWatchPaused = false;
+    }
+
+
+    /**
+     * Pauses the Stopwatch
+     *
+     * @return The time elapsed so far
+     */
+    public long pause() {
+        if (!isStopWatchTicking()) {
+            return -1;
+        } else if (isStopWatchPaused()) {
+            return (pausePointNS - startTimeNS);
+        } else {
+            pausePointNS = System.nanoTime();
+            stopWatchPaused = true;
+            return (pausePointNS - startTimeNS);
         }
+    }
 
-        //get functions
-        public boolean isStopWatchTicking() {
-            return stopWatchTicking;
-        }
-        public boolean isStopWatchPaused() {
-            return stopWatchPaused;
-        }
-
-        public void startStopWatch(){
-            startTimeNS = System.nanoTime();
-            stopWatchTicking = true;
+    /**
+     * Resumes the StopWatch from it's paused state
+     */
+    public void resume() {
+        if (isStopWatchPaused() && isStopWatchTicking()) {
+            startTimeNS = System.nanoTime() - (pausePointNS - startTimeNS);
             stopWatchPaused = false;
         }
+    }
 
-        public long stop() {
-            if (!isStopWatchTicking()) {
-                return -1;
-            } else if (isStopWatchPaused()) {
-                stopWatchTicking = false;
-                stopWatchPaused = false;
-
-                return pausePointNS - startTimeNS;
-            } else {
-                endTimerNS = System.nanoTime();
-                stopWatchTicking = false;
-                return endTimerNS - startTimeNS;
-            }
-        }
-
-        /**
-         * Pauses the Stopwatch
-         *
-         * @return The time elapsed so far
-         */
-        public long pause() {
-            if (!isStopWatchTicking()) {
-                return -1;
-            } else if (isStopWatchPaused()) {
+    /**
+     * Returns the total time elapsed
+     *
+     * @return The total time elapsed
+     */
+    public long elapsed() {
+        if (isStopWatchTicking()) {
+            if (isStopWatchPaused())
                 return (pausePointNS - startTimeNS);
-            } else {
-                pausePointNS = System.nanoTime();
-                stopWatchPaused = true;
-                return (pausePointNS - startTimeNS);
-            }
-        }
+            return (System.nanoTime() - startTimeNS);
+        } else
+            return (endTimerNS - startTimeNS);
+    }
 
-        /**
-         * Resumes the StopWatch from it's paused state
-         */
-        public void resume() {
-            if (isStopWatchPaused() && isStopWatchTicking()) {
-                startTimeNS = System.nanoTime() - (pausePointNS - startTimeNS);
-                stopWatchPaused = false;
-            }
-        }
-
-        /**
-         * Returns the total time elapsed
-         *
-         * @return The total time elapsed
-         */
-        public long elapsed() {
-            if (isStopWatchTicking()) {
-                if (isStopWatchPaused())
-                    return (pausePointNS - startTimeNS);
-                return (System.nanoTime() - startTimeNS);
-            } else
-                return (endTimerNS - startTimeNS);
-        }
-
-        /**
-         * Returns the number of seconds this Stopwatch has elapsed
-         *
-         * @return The String of the number of seconds
-         */
-        public String toString() {
-            long timeElapsed = elapsed();
-            return ((double) timeElapsed / 1000000000.0) + " Seconds";
-        }
-    };
-}
+    /**
+     * Returns the number of seconds this Stopwatch has elapsed
+     *
+     * @return The String of the number of seconds
+     */
+    public String toString() {
+        long timeElapsed = elapsed();
+        return ((double) timeElapsed / 1000000000.0) + " Seconds";
+    }
+};
