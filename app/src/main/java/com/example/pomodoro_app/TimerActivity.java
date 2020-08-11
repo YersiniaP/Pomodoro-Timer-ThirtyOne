@@ -179,7 +179,9 @@ public class TimerActivity extends AppCompatActivity {
 
 };
 
+
 //from https://gist.github.com/EdHurtig/78cbe307c1c85db12af7
+
 class StopWatch {
 
     //time variables
