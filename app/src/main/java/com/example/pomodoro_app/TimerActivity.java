@@ -15,10 +15,10 @@ public class TimerActivity extends AppCompatActivity {
     ** hardcoding for now, eventually gathered from task creation page **
     ** replace all right side values with links to user entered data   **
     /*******************************************************************/
-    public static int numBreaks;// = 2;
-    public static double breakLengthSessionMinutes;// = 0.1;
-    public static int totalTimeMinutes = 1;  //ie (endTime - startTime)
-    public static String taskName;// = "Study";
+    public static int numBreaks;
+    public static double breakLengthSessionMinutes;
+    public static int totalTimeMinutes;  //ie (endTime - startTime)
+    public static String taskName;
     /********************************************************************
     ********************************************************************/
 
@@ -179,6 +179,7 @@ public class TimerActivity extends AppCompatActivity {
 
 };
 
+//from https://gist.github.com/EdHurtig/78cbe307c1c85db12af7
 class StopWatch {
 
     //time variables
