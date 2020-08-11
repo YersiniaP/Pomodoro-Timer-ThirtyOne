@@ -9,22 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PasswordRecovery"></activity>
+        <activity android:name=".TaskCompletion"></activity>
+        <activity android:name=".PasswordRecovery" />
         <activity android:name=".NewCategoryActivity" />
         <activity android:name=".WhatIs" />
         <activity android:name=".AccountCreation" />
-        <activity android:name=".ProgressActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".TimerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".RewardsActivity" />
-        <activity android:name=".TaskCreationActivity"></activity>
-        <activity android:name=".LoginActivity"> </activity>
-        <activity android:name=".TimerActivity" > </activity>
-
+        <activity android:name=".TaskCreationActivity" />
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".ProgressActivity"></activity>
     </application>
 
 </manifest>
