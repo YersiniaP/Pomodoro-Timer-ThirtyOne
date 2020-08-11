@@ -47,7 +47,8 @@
         android:text="Update Paused Time"
         android:textSize="15sp"
         android:background="@color/colorAccent"
-        android:textColor= "@color/colorPrimaryDark"/>
+        android:textColor= "@color/colorPrimaryDark"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/stopwatch_display"
@@ -58,6 +59,7 @@
         android:layout_marginLeft="200dp"
         android:text="0 seconds"
         android:textSize="25sp"
-        android:textColor= "@color/colorPrimaryDark"/>
+        android:textColor= "@color/colorPrimaryDark"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

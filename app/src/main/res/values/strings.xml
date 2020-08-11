@@ -9,8 +9,8 @@
     <string name="category">Create New Category</string>
     <string name="new_category">New Category Name</string>
     <string name="edit_task">Name of task</string>
-    <string name="edit_starttim">Start Time</string>
-    <string name="edit_endtime">End Time</string>
+    <string name="edit_starttime">Set Start Time</string>
+    <string name="edit_endtime"> Set End Time</string>
     <string name="edit_pomodoro">Pomodoro</string>
     <string name="edit_shortbreak">Short Break</string>
     <string name="edit_longbreak">Long Break</string>
@@ -33,6 +33,14 @@
     <string name="user_name">User Name</string>
     <string name="click_me">Click Me!</string>
     <string name="how_to_use_this_app">How to Use this App</string>
+
+    //time picker
+    <string name="action_settings">Settings</string>
+    <string name="time_picker_example">Time Picker Example</string>
+    <string name="time_pick">Pick the time and press save button</string>
+    <string name="time_save">Save</string>
+    <string name="time_selected">Time Selected</string>
+    <string name="time_current">The Time is:</string>
 
 
 </resources>
