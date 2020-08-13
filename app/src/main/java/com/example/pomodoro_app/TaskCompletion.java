@@ -3,18 +3,21 @@ package com.example.pomodoro_app;
 
 import android.os.Bundle;
 import android.content.Intent;
-import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.Locale;
 
 public class TaskCompletion extends AppCompatActivity {
 
     private Button button_yes;
     private Button button_no;
 
+    @Override
+    public void onBackPressed() {
+        // Prevents user from using back button on this screen
+        return;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
