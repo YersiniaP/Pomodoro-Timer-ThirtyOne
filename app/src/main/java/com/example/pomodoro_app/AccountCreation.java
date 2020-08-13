@@ -47,7 +47,16 @@ public class AccountCreation extends AppCompatActivity {
             }
         });
     }
-    //*****************************************************************************************
+
+    @Override
+    public void onBackPressed() {
+        /* This prevents the app from automatically closing and insteads returns the user back
+        to the login page */
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        finish();
+        startActivity(intent);
+    }
+
     public void SetValidation() {
         String email = user_email.getText().toString().trim();
         String password = user_password.getText().toString().trim();

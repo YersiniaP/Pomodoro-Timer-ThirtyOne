@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -51,7 +52,7 @@ public class ProgressActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        /* This prevents the app from automatically closing and insteads returns the user back
+        /* This prevents the app from automatically closing and instead returns the user back
         to the login page */
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         finish();
@@ -131,18 +132,22 @@ public class ProgressActivity extends AppCompatActivity {
     public void OpenRewardsPage() {
         Intent intent = new Intent(getApplicationContext(), RewardsActivity.class);
         intent.putExtra(EXTRA_EMAIL, active_email); // Passes active email to Rewards page.
+        finish();
         startActivity(intent);
     }
 
     // When the user clicks on the Level button from the Progress page, the rewards page opens.
     public void OpenTaskCreationPage() {
+        // Does not kill this page in case the user presses back on the task creation page.
         Intent intent = new Intent(getApplicationContext(), TaskCreationActivity.class);
         startActivity(intent);
     }
 
     public void SignOut() {
         Toast.makeText(ProgressActivity.this, "Signed Off, GoodBye!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         finish();
+        startActivity(intent);
     }
 
 

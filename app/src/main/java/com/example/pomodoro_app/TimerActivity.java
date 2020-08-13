@@ -124,6 +124,12 @@ public class TimerActivity extends AppCompatActivity {
         updateCountDownText(workRemaining);
     }
 
+    @Override
+    public void onBackPressed() {
+        // Prevents user from using back button on this screen
+        return;
+    }
+
     private CountDownTimer createTimer(long newTime) {
         return new CountDownTimer(newTime, 1000) {
 

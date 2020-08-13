@@ -72,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), WhatIs.class);
-                finish();
                 startActivity(intent);
             }
         });
@@ -87,6 +86,12 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        /* This prevents the app from automatically closing when back is pressed */
+        return;
     }
 
 
@@ -126,6 +131,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+
+                    // Sends user to Progress page
                     Intent intent = new Intent(getApplicationContext(), ProgressActivity.class);
                     finish();
                     startActivity(intent);

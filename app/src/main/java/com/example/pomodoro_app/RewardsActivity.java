@@ -108,4 +108,13 @@ public class RewardsActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        /* This prevents the app from automatically closing and instead returns the user back
+        to the progress page */
+        Intent intent = new Intent(getApplicationContext(), ProgressActivity.class);
+        finish();
+        startActivity(intent);
+    }
 }
