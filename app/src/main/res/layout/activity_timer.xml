@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="00:00"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorAccentDark"
         android:textSize="60sp" />
 
     <TextView
