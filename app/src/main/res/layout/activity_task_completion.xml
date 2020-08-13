@@ -10,15 +10,22 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="No"
         tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="399dp" />
+        tools:layout_editor_absoluteY="399dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="YES"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorAccentDark"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="264dp"
         tools:layout_editor_absoluteY="399dp" />
 

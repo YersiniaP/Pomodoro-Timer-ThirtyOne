@@ -52,7 +52,6 @@
         android:id="@+id/bt_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="DONE"
         android:background="@color/colorAccent"
         android:textColor="@color/colorAccentDark"
