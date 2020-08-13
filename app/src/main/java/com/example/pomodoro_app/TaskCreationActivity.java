@@ -241,6 +241,7 @@ public class TaskCreationActivity extends AppCompatActivity {
 
     public void goToTimerActivity() {
         Intent intent = new Intent(getApplicationContext(), TimerActivity.class);
+        finish();
         startActivity(intent);
     }
 }
