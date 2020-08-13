@@ -52,7 +52,9 @@ public class LoginActivity extends AppCompatActivity {
         btn_Create_Account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),AccountCreation.class));
+                Intent intent = new Intent(getApplicationContext(), AccountCreation.class);
+                finish();
+                startActivity(intent);
             }
         });
 
@@ -69,14 +71,18 @@ public class LoginActivity extends AppCompatActivity {
         Tommy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),WhatIs.class));
+                Intent intent = new Intent(getApplicationContext(), WhatIs.class);
+                finish();
+                startActivity(intent);
             }
         });
 
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), PasswordRecovery.class));
+                Intent intent = new Intent(getApplicationContext(), PasswordRecovery.class);
+                finish();
+                startActivity(intent);
             }
         });
 
@@ -120,7 +126,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(),ProgressActivity.class));
+                    Intent intent = new Intent(getApplicationContext(),ProgressActivity.class);
+                    finish();
+                    startActivity(intent);
                 }
                 else
                 {

@@ -2,6 +2,7 @@ package com.example.pomodoro_app;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -56,7 +57,9 @@ public class AccountCreation extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         Toast.makeText(AccountCreation.this, "User Created", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         finish();
+                        startActivity(intent);
                     } else {
                         Toast.makeText(AccountCreation.this, "Error" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
