@@ -2,6 +2,7 @@ package com.example.pomodoro_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,12 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         mEtName = findViewById(R.id.et_name);
         findViewById(R.id.bt_back).setOnClickListener(this);
         findViewById(R.id.bt_done).setOnClickListener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Prevents user from using back button on this screen
+        return;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.pomodoro_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -36,6 +37,7 @@ public class TimerActivity extends AppCompatActivity {
     private TextView timeDisplay;
     private TextView taskStatus;
     private Button buttonToggleTimer;
+    private Button buttonAbandonTask;
 
     private CountDownTimer workTimer;
     private CountDownTimer breakTimer;
@@ -62,6 +64,19 @@ public class TimerActivity extends AppCompatActivity {
         taskStatus.setText(taskName);
         pausedTimeTracker = new StopWatch();
         buttonToggleStopWatch = findViewById(R.id.button_pause_stopwatch);
+        buttonAbandonTask = findViewById(R.id.timer_button_abandon);
+
+        buttonAbandonTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Returns user to the rewards page when abandoned button is clicked
+                Intent intent = new Intent(getApplicationContext(), RewardsActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        });
+
+
 
         buttonToggleStopWatch.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -107,6 +122,12 @@ public class TimerActivity extends AppCompatActivity {
             }
         });
         updateCountDownText(workRemaining);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Prevents user from using back button on this screen
+        return;
     }
 
     private CountDownTimer createTimer(long newTime) {
@@ -179,7 +200,9 @@ public class TimerActivity extends AppCompatActivity {
 
 };
 
+
 //from https://gist.github.com/EdHurtig/78cbe307c1c85db12af7
+
 class StopWatch {
 
     //time variables

@@ -54,8 +54,9 @@ public class PasswordRecovery extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(), "Sent!", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                     finish();
-
+                                    startActivity(intent);
                                 } else {
                                     Toast.makeText(getApplicationContext(), "No email registered", Toast.LENGTH_LONG).show();
                                 }

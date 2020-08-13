@@ -51,7 +51,9 @@ public class RewardsActivity extends AppCompatActivity {
         rewards_button_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ProgressActivity.class);
                 finish();
+                startActivity(intent);
             }
         });
 
@@ -105,5 +107,14 @@ public class RewardsActivity extends AppCompatActivity {
         thread.start();
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        /* This prevents the app from automatically closing and instead returns the user back
+        to the progress page */
+        Intent intent = new Intent(getApplicationContext(), ProgressActivity.class);
+        finish();
+        startActivity(intent);
     }
 }

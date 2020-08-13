@@ -2,9 +2,6 @@ package com.example.pomodoro_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-
-import android.os.Parcelable;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,11 +12,11 @@ import android.os.Bundle;
 import android.view.View;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseError;
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.w3c.dom.Text;
+
 
 public class LoginActivity extends AppCompatActivity {
     Button btn_Create_Account;
@@ -27,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
     ImageView Tommy;
     EditText editTextTextEmailAddress;
     EditText editTextTextPassword;
-    private AppDB database;
     public static final String EXTRA_EMAIL = "com.example.pomodoro_app.EXTRA_EMAIL";
     FirebaseAuth FirebaseAuth;
     TextView forgot_password;
@@ -41,6 +37,11 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseAuth = FirebaseAuth.getInstance();
 
         // Generates database for login validation
+
+        /* ********************** -----original database------ **********************
+        database = Room.databaseBuilder(getApplicationContext(), AppDB.class,
+                "users-database").allowMainThreadQueries().build();
+        **************************************************************************** */
         editTextTextEmailAddress = (EditText) findViewById(R.id.editTextTextEmailAddress);
         editTextTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
         forgot_password = (TextView) findViewById(R.id.forgot_password);
@@ -51,7 +52,9 @@ public class LoginActivity extends AppCompatActivity {
         btn_Create_Account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AccountCreation();
+                Intent intent = new Intent(getApplicationContext(), AccountCreation.class);
+                finish();
+                startActivity(intent);
             }
         });
 
@@ -68,18 +71,27 @@ public class LoginActivity extends AppCompatActivity {
         Tommy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WhatIs();
+                Intent intent = new Intent(getApplicationContext(), WhatIs.class);
+                startActivity(intent);
             }
         });
 
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PasswordRecovery();
+                Intent intent = new Intent(getApplicationContext(), PasswordRecovery.class);
+                finish();
+                startActivity(intent);
             }
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        /* This prevents the app from automatically closing when back is pressed */
+        return;
     }
 
 
@@ -96,12 +108,34 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        /* **************************** --- original database--- *********************
+        // Loads the Progress page
+        if (target_user == null) {
+            // generate an error message
+            Toast.makeText(getApplicationContext(), "Email not found.",
+                    Toast.LENGTH_LONG).show();
+        } else if (target_user.db_password.equals(password)) {
+            Intent intent = new Intent(this, ProgressActivity.class);
+            intent.putExtra(EXTRA_EMAIL, target_user.db_email); // Sends active email to Progress
+            startActivity(intent);
+        } else {
+            // generate an error message
+            Toast.makeText(this, "Invalid Username/Password!",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        ************************************************************************************** */
+
         FirebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(),ProgressActivity.class));
+
+                    // Sends user to Progress page
+                    Intent intent = new Intent(getApplicationContext(), ProgressActivity.class);
+                    finish();
+                    startActivity(intent);
                 }
                 else
                 {
@@ -114,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
 
     } //end of GoProgress function
 
-
+        /*
             public void AccountCreation() {
                 Intent intent = new Intent(getApplicationContext(), AccountCreation.class);
                 startActivity(intent);
@@ -129,7 +163,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PasswordRecovery.class);
                 startActivity(intent);
             }
-
+*/
 
 
 

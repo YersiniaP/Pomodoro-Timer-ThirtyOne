@@ -241,6 +241,11 @@ public class TaskCreationActivity extends AppCompatActivity {
 
     public void goToTimerActivity() {
         Intent intent = new Intent(getApplicationContext(), TimerActivity.class);
+        /* This line kills the progress page that's paused on the stack so when the task creates
+        a new intent for progress page, the user can't navigate back to the old progress page */
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        finish();
         startActivity(intent);
     }
 }
