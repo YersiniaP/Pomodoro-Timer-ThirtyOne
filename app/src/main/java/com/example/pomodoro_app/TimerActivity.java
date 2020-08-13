@@ -70,7 +70,7 @@ public class TimerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Returns user to the rewards page when abandoned button is clicked
-                Intent intent = new Intent(getApplicationContext(), RewardsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TaskCompletion.class);
                 finish();
                 startActivity(intent);
             }
@@ -122,12 +122,6 @@ public class TimerActivity extends AppCompatActivity {
             }
         });
         updateCountDownText(workRemaining);
-    }
-
-    @Override
-    public void onBackPressed() {
-        // Prevents user from using back button on this screen
-        return;
     }
 
     private CountDownTimer createTimer(long newTime) {
