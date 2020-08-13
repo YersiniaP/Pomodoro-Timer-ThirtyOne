@@ -49,6 +49,16 @@ public class ProgressActivity extends AppCompatActivity {
         GeneratePie();
     }
 
+    @Override
+    public void onBackPressed() {
+        /* This prevents the app from automatically closing and insteads returns the user back
+        to the login page */
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        finish();
+        startActivity(intent);
+    }
+
+
     // Binds UI elements
     private void BindButtons(){
         // Clicking Level button initializes the Rewards page.
