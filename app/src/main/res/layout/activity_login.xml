@@ -49,7 +49,9 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
-        app:layout_constraintVertical_bias="0.231" />
+        app:layout_constraintVertical_bias="0.231"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorAccentDark"/>
 
     <Button
         android:id="@+id/btn_Create_Account"
@@ -62,7 +64,9 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_Sign_In"
-        app:layout_constraintVertical_bias="0.219" />
+        app:layout_constraintVertical_bias="0.219"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorAccentDark"/>
 
     <TextView
         android:id="@+id/forgot_password"
@@ -96,13 +100,13 @@
         android:fontFamily="@font/autour_one"
         android:text="@string/click_me"
         android:textAllCaps="false"
-        android:textColor="#E41506"
-        android:textColorLink="#ED0909"
+        android:textColor="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimaryDark"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.788" />
+        app:layout_constraintVertical_bias="0.88" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

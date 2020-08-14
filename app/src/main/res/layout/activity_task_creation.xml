@@ -20,7 +20,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startTimePicker"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@color/colorFadedPrimaryDark"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <TimePicker
         android:id="@+id/startTimePicker"
@@ -31,7 +33,10 @@
         android:layout_marginTop="48dp"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:headerBackground="@color/colorPrimaryDark"
+        android:headerTimeTextAppearance="@color/colorPrimary"
+        android:headerAmPmTextAppearance="@color/colorAccent"/>
 
     <TextView
         android:id="@+id/textView1"
@@ -45,16 +50,17 @@
         app:layout_constraintEnd_toEndOf="@+id/set_time_picker_button"
         app:layout_constraintStart_toStartOf="@+id/set_time_picker_button"
         app:layout_constraintTop_toBottomOf="@+id/startTimePicker"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="@color/red"
+        android:background="@color/colorPrimary"
         android:gravity="center"
         android:text="@string/app_name"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -84,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         app:layout_constraintVertical_chainStyle="spread"
         app:layout_constraintHeight_min="@+id/editTaskName"
-        android:background= "#D3D0D0"/>
+        android:background= "#E3E3E3"/>
 
     <View
         android:id="@+id/v"
@@ -111,7 +117,8 @@
         app:layout_constraintBottom_toTopOf="@+id/startTimeButton"
         app:layout_constraintLeft_toLeftOf="@id/categoryDropDown"
         app:layout_constraintRight_toRightOf="@id/categoryDropDown"
-        app:layout_constraintTop_toBottomOf="@+id/v" />
+        app:layout_constraintTop_toBottomOf="@+id/v"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <Button
         android:id="@+id/startTimeButton"
@@ -121,11 +128,15 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="@string/edit_starttime"
+        android:textSize="16sp"
+        android:textStyle="bold"
         android:inputType="time"
         app:layout_constraintBottom_toTopOf="@+id/endTimeButton"
         app:layout_constraintLeft_toLeftOf="@id/categoryDropDown"
         app:layout_constraintRight_toRightOf="@id/categoryDropDown"
-        app:layout_constraintTop_toBottomOf="@+id/editTaskName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTaskName"
+        android:background="#5EF5310F"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <Button
         android:id="@+id/endTimeButton"
@@ -136,10 +147,14 @@
         android:ems="10"
         android:hint="@string/edit_endtime"
         android:inputType="time"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editNumBreaks"
         app:layout_constraintLeft_toLeftOf="@id/categoryDropDown"
         app:layout_constraintRight_toRightOf="@id/categoryDropDown"
-        app:layout_constraintTop_toBottomOf="@+id/startTimeButton" />
+        app:layout_constraintTop_toBottomOf="@+id/startTimeButton"
+        android:background="#5EF5310F"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <EditText
         android:id="@+id/editNumBreaks"
@@ -153,7 +168,8 @@
         app:layout_constraintBottom_toTopOf="@+id/editShortBreak"
         app:layout_constraintLeft_toLeftOf="@id/categoryDropDown"
         app:layout_constraintRight_toRightOf="@id/categoryDropDown"
-        app:layout_constraintTop_toBottomOf="@+id/endTimeButton" />
+        app:layout_constraintTop_toBottomOf="@+id/endTimeButton"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <EditText
         android:id="@+id/editShortBreak"
@@ -167,7 +183,8 @@
         app:layout_constraintBottom_toTopOf="@+id/create_button"
         app:layout_constraintLeft_toLeftOf="@id/categoryDropDown"
         app:layout_constraintRight_toRightOf="@id/categoryDropDown"
-        app:layout_constraintTop_toBottomOf="@+id/editNumBreaks" />
+        app:layout_constraintTop_toBottomOf="@+id/editNumBreaks"
+        android:textColor="@color/colorPrimaryDark"/>
 
    <!-- <EditText
         android:id="@+id/editTextTime4"
@@ -188,10 +205,11 @@
         android:layout_width="212dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@color/red"
+        android:background="@color/colorAccent"
         android:onClick="@string/button_create"
         android:text="@string/button_create"
-        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textColor="@color/colorAccentDark"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/categoryDropDown"

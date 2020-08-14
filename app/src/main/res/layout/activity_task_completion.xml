@@ -17,7 +17,12 @@
         app:layout_constraintHorizontal_bias="0.761"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.774" />
+        app:layout_constraintVertical_bias="0.774"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="399dp"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorAccentDark"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button_no"
@@ -30,19 +35,26 @@
         app:layout_constraintHorizontal_bias="0.256"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.775" />
+        app:layout_constraintVertical_bias="0.775"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="264dp"
+        tools:layout_editor_absoluteY="399dp" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="0dp"
         android:layout_height="23dp"
         android:fontFamily="@font/autour_one"
+        android:textColor="@color/colorPrimaryDark"
         android:text="Did you finish your task?"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.311" />
+        app:layout_constraintVertical_bias="0.311"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

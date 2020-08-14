@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.199" />
+        app:layout_constraintVertical_bias="0.199"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <EditText
         android:id="@+id/email"
@@ -62,7 +63,9 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.83" />
+        app:layout_constraintVertical_bias="0.83"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorAccentDark" />
 
     <EditText
         android:id="@+id/name"
