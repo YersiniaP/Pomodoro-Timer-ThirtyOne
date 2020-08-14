@@ -36,15 +36,10 @@ public class LoginActivity extends AppCompatActivity {
         //get Firebase instance
         FirebaseAuth = FirebaseAuth.getInstance();
 
-        // Generates database for login validation
-
-        /* ********************** -----original database------ **********************
-        database = Room.databaseBuilder(getApplicationContext(), AppDB.class,
-                "users-database").allowMainThreadQueries().build();
-        **************************************************************************** */
         editTextTextEmailAddress = (EditText) findViewById(R.id.editTextTextEmailAddress);
         editTextTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
         forgot_password = (TextView) findViewById(R.id.forgot_password);
+
         //Click the 'Create Account button and go to the Account creation activity
         btn_Create_Account = (Button) findViewById(R.id.btn_Create_Account);
         Tommy = (ImageView) findViewById(R.id.Tommy);
@@ -98,8 +93,8 @@ public class LoginActivity extends AppCompatActivity {
     // Validates credentials and sends user to Progress page
     public void GoToProgress() {
         // Validates formatting input
-        String email = editTextTextEmailAddress.getText().toString();
-        String password = editTextTextPassword.getText().toString();
+        final String email = editTextTextEmailAddress.getText().toString();
+        final String password = editTextTextPassword.getText().toString();
         // --- original database---Users target_user = database.users_dao().get_user_by_email(email); // The user to look for
 
         if (email.isEmpty() || password.isEmpty()) {
@@ -108,32 +103,15 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        /* **************************** --- original database--- *********************
-        // Loads the Progress page
-        if (target_user == null) {
-            // generate an error message
-            Toast.makeText(getApplicationContext(), "Email not found.",
-                    Toast.LENGTH_LONG).show();
-        } else if (target_user.db_password.equals(password)) {
-            Intent intent = new Intent(this, ProgressActivity.class);
-            intent.putExtra(EXTRA_EMAIL, target_user.db_email); // Sends active email to Progress
-            startActivity(intent);
-        } else {
-            // generate an error message
-            Toast.makeText(this, "Invalid Username/Password!",
-                    Toast.LENGTH_LONG).show();
-        }
-
-        ************************************************************************************** */
-
         FirebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
 
-                    // Sends user to Progress page
+                    // Sends user to Progress page along with the user's email
                     Intent intent = new Intent(getApplicationContext(), ProgressActivity.class);
+                    intent.putExtra(EXTRA_EMAIL, email);
                     finish();
                     startActivity(intent);
                 }
@@ -141,32 +119,9 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     Toast.makeText(LoginActivity.this, "Invalid Email/Password", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
-
-
     } //end of GoProgress function
-
-        /*
-            public void AccountCreation() {
-                Intent intent = new Intent(getApplicationContext(), AccountCreation.class);
-                startActivity(intent);
-            }
-
-            public void WhatIs() {
-                Intent intent = new Intent(getApplicationContext(), WhatIs.class);
-                startActivity(intent);
-            }
-
-            public void PasswordRecovery() {
-                Intent intent = new Intent(getApplicationContext(), PasswordRecovery.class);
-                startActivity(intent);
-            }
-*/
-
-
-
     }// end of public class loginActivity
 
 
