@@ -76,7 +76,7 @@ public class ProgressActivity extends AppCompatActivity {
         progress_button_sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                SignOut();
             }
         });
 

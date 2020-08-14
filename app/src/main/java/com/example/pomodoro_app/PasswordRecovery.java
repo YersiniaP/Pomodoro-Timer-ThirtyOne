@@ -70,4 +70,12 @@ public class PasswordRecovery extends AppCompatActivity {
 
     }// end onCreate
 
+    @Override
+    public void onBackPressed() {
+        // Sends user back to login page
+        Intent intent = new Intent(getApplicationContext(), ProgressActivity.class);
+        finish();
+        startActivity(intent);
+    }
+
 }// end class passwordRecovery
