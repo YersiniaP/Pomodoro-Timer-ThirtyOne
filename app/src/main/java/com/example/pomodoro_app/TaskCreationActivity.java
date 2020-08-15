@@ -210,6 +210,7 @@ public class TaskCreationActivity extends AppCompatActivity {
             inputNumBreaks.setVisibility(View.VISIBLE);
             startTimeButton.setVisibility(View.VISIBLE);
             endTimeButton.setVisibility(View.VISIBLE);
+            createTaskButton.setVisibility(View.VISIBLE);
         }
         else{
             startTimePicker.setVisibility(View.VISIBLE);
@@ -222,6 +223,7 @@ public class TaskCreationActivity extends AppCompatActivity {
             inputNumBreaks.setVisibility(View.INVISIBLE);
             startTimeButton.setVisibility(View.INVISIBLE);
             endTimeButton.setVisibility(View.INVISIBLE);
+            createTaskButton.setVisibility(View.INVISIBLE);
         }
     }
 
