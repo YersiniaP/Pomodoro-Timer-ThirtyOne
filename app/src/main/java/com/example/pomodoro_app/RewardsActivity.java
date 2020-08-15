@@ -28,6 +28,7 @@ public class RewardsActivity extends AppCompatActivity {
     private AppDB database;
     private String active_email; //Email of logged in user
     public static final String EXTRA_EMAIL = "com.example.pomodoro_app.EXTRA_EMAIL";
+    Users user_entry;
 
     // XP Circle
     public static final Integer MAX_XP = 1000; // How much XP per level
@@ -63,8 +64,7 @@ public class RewardsActivity extends AppCompatActivity {
         Intent intent_email = getIntent();
         active_email = intent_email.getStringExtra(ProgressActivity.EXTRA_EMAIL);
         if (active_email == null){
-            Log.e("rewards email load", "active_email not loaded");
-            return;
+            active_email = intent_email.getStringExtra(TaskCompletion.EXTRA_EMAIL);
         }
 
         // Generates database for accessing the user's level stats
@@ -72,7 +72,9 @@ public class RewardsActivity extends AppCompatActivity {
                 "users-database").allowMainThreadQueries().build();
 
         // Finds user by email address
-        Users user_entry = database.users_dao().get_user_by_email(active_email);
+        user_entry = database.users_dao().get_user_by_email(active_email);
+        Log.e("user_entry", String.valueOf(user_entry));
+        Log.e("active_email", String.valueOf(active_email));
 
         // Determines the XP remaining until the next level is reached.
         stopping_xp_position = user_entry.db_xp % MAX_XP;

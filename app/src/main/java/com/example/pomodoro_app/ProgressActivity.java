@@ -62,6 +62,9 @@ public class ProgressActivity extends AppCompatActivity {
         // Grabs email from login page
         Intent intent_user = getIntent();
         active_email = intent_user.getStringExtra(LoginActivity.EXTRA_EMAIL);
+        if (active_email == null){
+            active_email = intent_user.getStringExtra(RewardsActivity.EXTRA_EMAIL);
+        }
 
         // Binds UI event listeners
         BindButtons();
@@ -79,7 +82,7 @@ public class ProgressActivity extends AppCompatActivity {
     private void GetUserData(){
         // Builds the database for the session and grabs information from the user
         AppDB db = Room.databaseBuilder(getApplicationContext(),
-                AppDB.class, "database-name").allowMainThreadQueries().build();
+                AppDB.class, "users-database").allowMainThreadQueries().build();
         Log.e("active_email", active_email);
         user_entry = db.users_dao().get_user_by_email(active_email);
     }
