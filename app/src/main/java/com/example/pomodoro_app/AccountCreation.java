@@ -37,7 +37,7 @@ public class AccountCreation extends AppCompatActivity {
 
         // Builds database for adding the user
         db = Room.databaseBuilder(getApplicationContext(),
-                AppDB.class, "database-name").allowMainThreadQueries().build();
+                AppDB.class, "users-database").allowMainThreadQueries().build();
 
         // If user is logged in the proceed to progress activity else close, need to fix this
         /*

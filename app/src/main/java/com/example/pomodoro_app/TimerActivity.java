@@ -23,6 +23,10 @@ public class TimerActivity extends AppCompatActivity {
     /********************************************************************
     ********************************************************************/
 
+    // db stuff
+    String active_email;
+    public static final String EXTRA_EMAIL = "com.example.pomodoro_app.EXTRA_EMAIL";
+
     //configure time variables
     private int numWorkSessions = numBreaks + 1;
     private double totalBreakMinutes = numBreaks * breakLengthSessionMinutes;
@@ -66,11 +70,16 @@ public class TimerActivity extends AppCompatActivity {
         buttonToggleStopWatch = findViewById(R.id.button_pause_stopwatch);
         buttonAbandonTask = findViewById(R.id.timer_button_abandon);
 
+        // Receive intent
+        Intent intent_user = getIntent();
+        active_email = intent_user.getStringExtra(TaskCreationActivity.EXTRA_EMAIL);
+
         buttonAbandonTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Returns user to the rewards page when abandoned button is clicked
                 Intent intent = new Intent(getApplicationContext(), TaskCompletion.class);
+                intent.putExtra(EXTRA_EMAIL, active_email); // Passes active email to Rewards page.
                 finish();
                 startActivity(intent);
             }

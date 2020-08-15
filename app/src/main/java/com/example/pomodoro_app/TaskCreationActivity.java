@@ -29,6 +29,9 @@ public class TaskCreationActivity extends AppCompatActivity {
     private Button endTimeButton;
     private Button saveTime;
 
+    public static final String EXTRA_EMAIL = "com.example.pomodoro_app.EXTRA_EMAIL";
+    String active_email;
+
 
     public TimePicker startTimePicker;
 
@@ -51,6 +54,13 @@ public class TaskCreationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_creation);
+
+        // receive intent stuff
+        // Grabs email from login page
+        Intent intent_user = getIntent();
+        active_email = intent_user.getStringExtra(ProgressActivity.EXTRA_EMAIL);
+
+
         mSpinner = findViewById(R.id.categoryDropDown);
         mSpinner.setAdapter(getArrayAdapter());
 
@@ -244,7 +254,7 @@ public class TaskCreationActivity extends AppCompatActivity {
         /* This line kills the progress page that's paused on the stack so when the task creates
         a new intent for progress page, the user can't navigate back to the old progress page */
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
+        intent.putExtra(EXTRA_EMAIL, active_email); // Passes active email
         finish();
         startActivity(intent);
     }
