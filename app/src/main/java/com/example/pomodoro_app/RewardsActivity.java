@@ -27,6 +27,7 @@ public class RewardsActivity extends AppCompatActivity {
     // Database
     private AppDB database;
     private String active_email; //Email of logged in user
+    public static final String EXTRA_EMAIL = "com.example.pomodoro_app.EXTRA_EMAIL";
 
     // XP Circle
     public static final Integer MAX_XP = 1000; // How much XP per level
@@ -52,6 +53,7 @@ public class RewardsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ProgressActivity.class);
+                intent.putExtra(EXTRA_EMAIL, active_email); // Passes active email to Rewards page.
                 finish();
                 startActivity(intent);
             }
@@ -70,19 +72,14 @@ public class RewardsActivity extends AppCompatActivity {
                 "users-database").allowMainThreadQueries().build();
 
         // Finds user by email address
-        Users target_user = database.users_dao().get_user_by_email(active_email);
-        if (target_user == null)
-        {
-            Log.e("rewards user query", "user not found in database");
-            return;
-        }
+        Users user_entry = database.users_dao().get_user_by_email(active_email);
 
         // Determines the XP remaining until the next level is reached.
-        stopping_xp_position = target_user.db_xp % MAX_XP;
+        stopping_xp_position = user_entry.db_xp % MAX_XP;
 
         // Updates elements depending on database information
-        rewards_total_xp.setText(String.valueOf(target_user.db_xp));
-        rewards_level.setText(String.valueOf(target_user.db_level));
+        rewards_total_xp.setText(String.valueOf(user_entry.db_xp));
+        rewards_level.setText(String.valueOf(user_entry.db_level));
 
         /* In a separate thread, the xp progress starts at zero and increases until it hits the
         amount of xp left in that level. */
@@ -114,6 +111,7 @@ public class RewardsActivity extends AppCompatActivity {
         /* This prevents the app from automatically closing and instead returns the user back
         to the progress page */
         Intent intent = new Intent(getApplicationContext(), ProgressActivity.class);
+        intent.putExtra(EXTRA_EMAIL, active_email); // Passes active email to Rewards page.
         finish();
         startActivity(intent);
     }

@@ -182,7 +182,7 @@ public class ProgressActivity extends AppCompatActivity {
     public void OpenTaskCreationPage() {
         // Does not kill this page in case the user presses back on the task creation page.
         Intent intent = new Intent(getApplicationContext(), TaskCreationActivity.class);
-        intent.putExtra(EXTRA_EMAIL, active_email); // Passes active email to Rewards page.
+        intent.putExtra(EXTRA_EMAIL, active_email); // Passes active email to Task Creation page.
         startActivity(intent);
     }
 
