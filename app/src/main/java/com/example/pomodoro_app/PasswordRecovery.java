@@ -27,6 +27,7 @@ public class PasswordRecovery extends AppCompatActivity {
     EditText emailAddress;
     Button btn_send;
     FirebaseAuth auth;
+    private Button backbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,17 @@ public class PasswordRecovery extends AppCompatActivity {
         setContentView(R.layout.activity_password_recovery);
         auth = FirebaseAuth.getInstance();
         emailAddress = (EditText) findViewById(R.id.user_email_password_recovery);
+        backbutton = findViewById(R.id.back_button);
 
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // return to the login page if user click the back button
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        });
 
         btn_send = (Button) findViewById(R.id.send);
         btn_send.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +80,8 @@ public class PasswordRecovery extends AppCompatActivity {
 
 
     }// end onCreate
+
+
 
     @Override
     public void onBackPressed() {
