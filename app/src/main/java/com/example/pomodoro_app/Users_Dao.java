@@ -5,6 +5,7 @@ import android.text.Editable;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public interface Users_Dao {
     @Query(value = "SELECT * FROM Users WHERE db_username = :target_username")
     Users get_user_by_username(String target_username);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert_user(Users... new_user);
 
     @Delete

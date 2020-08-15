@@ -1,12 +1,14 @@
 package com.example.pomodoro_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -22,11 +24,23 @@ import java.util.ArrayList;
 
 public class ProgressActivity extends AppCompatActivity {
 
+    // UI
     private Button progress_button_level;
     private Button progress_button_sign_out;
     private Button progress_button_create_task;
+
+    private TextView text_view_total_break_time;
+    private TextView text_view_breaks;
+    private TextView progress_text_total_task_time;
+    private TextView progress_text_tasks_completed;
+
+
+    // Room database
+    Users user_entry; // This is entry object that has this user's data.
     private String active_email; // email of active user
     public static final String EXTRA_EMAIL = "com.example.pomodoro_app.EXTRA_EMAIL";
+
+    // Pie chart
     private PieChart pie_chart;
     private Description pie_description;
     private Legend pie_legend;
@@ -39,6 +53,12 @@ public class ProgressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
 
+        // Text views
+        progress_text_tasks_completed = (TextView) findViewById(R.id.progress_text_tasks_completed);
+        text_view_total_break_time = (TextView) findViewById(R.id.text_view_total_break_time);
+        text_view_breaks = (TextView) findViewById(R.id.text_view_breaks);
+        progress_text_total_task_time = (TextView) findViewById(R.id.progress_text_total_task_time);
+
         // Grabs email from login page
         Intent intent_user = getIntent();
         active_email = intent_user.getStringExtra(LoginActivity.EXTRA_EMAIL);
@@ -46,8 +66,30 @@ public class ProgressActivity extends AppCompatActivity {
         // Binds UI event listeners
         BindButtons();
 
+        // Builds Database
+        GetUserData();
+
+        // Update UI with data (except Pie Chart)
+        UpdateUIData();
+
         // Pie chart
         GeneratePie();
+    }
+
+    private void GetUserData(){
+        // Builds the database for the session and grabs information from the user
+        AppDB db = Room.databaseBuilder(getApplicationContext(),
+                AppDB.class, "database-name").allowMainThreadQueries().build();
+        Log.e("active_email", active_email);
+        user_entry = db.users_dao().get_user_by_email(active_email);
+    }
+
+    private void UpdateUIData(){
+        // Updates the TextViews on the progress page
+        progress_text_tasks_completed.setText(String.valueOf(user_entry.db_day_task_completed));
+        text_view_total_break_time.setText(String.valueOf(user_entry.db_day_break_minutes));
+        text_view_breaks.setText(String.valueOf(user_entry.db_day_breaks));
+        progress_text_total_task_time.setText(String.valueOf(user_entry.db_day_task_minutes));
     }
 
     @Override
@@ -60,7 +102,7 @@ public class ProgressActivity extends AppCompatActivity {
     }
 
 
-    // Binds UI elements
+    // Binds buttons
     private void BindButtons(){
         // Clicking Level button initializes the Rewards page.
         progress_button_level = (Button) findViewById(R.id.progress_button_level);
@@ -140,6 +182,7 @@ public class ProgressActivity extends AppCompatActivity {
     public void OpenTaskCreationPage() {
         // Does not kill this page in case the user presses back on the task creation page.
         Intent intent = new Intent(getApplicationContext(), TaskCreationActivity.class);
+        intent.putExtra(EXTRA_EMAIL, active_email); // Passes active email to Task Creation page.
         startActivity(intent);
     }
 

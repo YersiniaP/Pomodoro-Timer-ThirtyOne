@@ -1,6 +1,7 @@
 package com.example.pomodoro_app;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class AccountCreation extends AppCompatActivity {
     EditText user_email, user_password, user_name;
     TextView login;
     FirebaseAuth FirebaseAuth;
+    AppDB db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,10 @@ public class AccountCreation extends AppCompatActivity {
         user_password = (EditText) findViewById(R.id.password);
         register = (Button) findViewById(R.id.register);
         FirebaseAuth = FirebaseAuth.getInstance();
+
+        // Builds database for adding the user
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDB.class, "database-name").allowMainThreadQueries().build();
 
         // If user is logged in the proceed to progress activity else close, need to fix this
         /*
@@ -65,6 +71,20 @@ public class AccountCreation extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
+                        // Adds user to local database
+                        Users new_user = new Users();
+                        new_user.db_username = user_name.getText().toString().trim();
+                        new_user.db_level = 0;
+                        new_user.db_email = user_email.getText().toString().trim();
+                        new_user.db_day_break_minutes = 0;
+                        new_user.db_day_breaks = 0;
+                        new_user.db_day_task_completed = 0;
+                        new_user.db_day_task_minutes = 0;
+                        new_user.db_day_xp = 0;
+                        new_user.db_xp = 0;
+                        db.users_dao().insert_user(new_user);
+
+
                         Toast.makeText(AccountCreation.this, "User Created", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         finish();

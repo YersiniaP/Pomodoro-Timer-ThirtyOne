@@ -1,5 +1,7 @@
 package com.example.pomodoro_app;
 
+import android.text.Editable;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -23,4 +25,19 @@ public class Users {
 
     @ColumnInfo(name = "db_xp")
     public Integer db_xp;
+
+    @ColumnInfo(name = "db_day_xp")
+    public Integer db_day_xp;
+
+    @ColumnInfo(name = "db_day_breaks")
+    public Integer db_day_breaks;
+
+    @ColumnInfo(name = "db_day_task_minutes")
+    public Integer db_day_task_minutes;
+
+    @ColumnInfo(name = "db_day_break_minutes")
+    public Integer db_day_break_minutes;
+
+    @ColumnInfo(name = "db_day_task_completed")
+    public Integer db_day_task_completed;
 }
